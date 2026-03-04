@@ -11,11 +11,15 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Widgets
+import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.Cloud
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material.icons.outlined.Widgets
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -105,7 +109,9 @@ fun CrushBottomNavigation(
                     )
                     val tabLabel = when (tab) {
                         CrushTab.Dashboard -> stringResource(R.string.tab_dashboard)
+                        CrushTab.Icons -> stringResource(R.string.tab_icons)
                         CrushTab.Widgets -> stringResource(R.string.tab_widgets)
+                        CrushTab.Wallpapers -> stringResource(R.string.tab_wallpapers)
                         CrushTab.WallpaperCloud -> stringResource(R.string.tab_wallpaper_cloud)
                     }
 
@@ -174,7 +180,9 @@ fun CrushBottomNavigation(
 private fun getTabIcon(tab: CrushTab, selected: Boolean): ImageVector {
     return when (tab) {
         CrushTab.Dashboard -> if (selected) Icons.Filled.Home else Icons.Outlined.Home
+        CrushTab.Icons -> if (selected) Icons.Filled.Apps else Icons.Outlined.Apps
         CrushTab.Widgets -> if (selected) Icons.Filled.Widgets else Icons.Outlined.Widgets
+        CrushTab.Wallpapers -> if (selected) Icons.Filled.Image else Icons.Outlined.Image
         CrushTab.WallpaperCloud -> if (selected) Icons.Filled.Cloud else Icons.Outlined.Cloud
     }
 }

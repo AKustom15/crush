@@ -3,72 +3,85 @@ package com.akustom15.crush.config
 import androidx.annotation.DrawableRes
 
 /**
- * Main configuration class for the Crush icon pack library.
- * Everything is configurable from the consuming app.
- *
- * @param appName Name of the icon pack app
- * @param appSubtitle Subtitle or tagline shown below the app name
- * @param appIcon Resource ID of the app icon (circular recommended)
- * @param packageName Package name of the consuming app
- * @param showWidgets Whether to show the Widgets/KLWP tab in bottom nav
- * @param showWallpaperCloud Whether to show the Cloud Wallpapers tab in bottom nav
- * @param widgetType Type of Kustom widgets: KWGT or KLWP
- * @param cloudWallpapersUrl URL to the JSON file containing cloud wallpapers data
- * @param appFilterXmlRes Resource ID for appfilter XML (icon pack mapping)
- * @param developerLogoUrl URL to the developer logo image (About screen)
- * @param developerName Developer name shown in About screen
- * @param moreAppsUrl URL to developer page on Play Store
- * @param privacyPolicyUrl URL to privacy policy page
- * @param updateJsonUrl URL to version JSON for update checking
- * @param changelog Changelog configuration for the changelog dialog
- * @param splashAnimationDurationMs Duration of splash animation before auto-navigating
- * @param splashTextParts Text parts for splash animation (max 3 parts)
- * @param xIcon Resource ID for Twitter/X social media icon
- * @param instagramIcon Resource ID for Instagram social media icon
- * @param youtubeIcon Resource ID for YouTube social media icon
- * @param facebookIcon Resource ID for Facebook social media icon
- * @param telegramIcon Resource ID for Telegram social media icon
+ * Clase principal de configuración de la librería Crush.
+ * Todo es configurable desde la app que consume la librería.
  */
 data class CrushConfig(
+    // Información básica de la app
     val appName: String,
     val appSubtitle: String = "",
     @DrawableRes val appIcon: Int? = null,
     val packageName: String,
-    val showWidgets: Boolean = true,
-    val showWallpaperCloud: Boolean = true,
+
+    // Visibilidad de tabs en la navegación inferior
+    val showIconsTab: Boolean = true,
+    val showWidgets: Boolean = false,
+    val showWallpapers: Boolean = false,
+    val showWallpaperCloud: Boolean = false,
     val widgetType: WidgetType = WidgetType.KWGT,
+
+    // URLs de recursos remotos
     val cloudWallpapersUrl: String = "",
-    val appFilterXmlRes: Int = 0,
-    val developerLogoUrl: String = "",
-    val developerName: String = "",
-    val moreAppsUrl: String = "",
-    val privacyPolicyUrl: String = "",
     val updateJsonUrl: String = "",
+
+    // Configuración de icon pack
+    val iconRequestEmail: String = "",
+    val freeIconRequestLimit: Int = 10,
+    val enablePremiumRequest: Boolean = false,
+
+    // Información del desarrollador (pantalla About)
+    val developerLogoUrl: String = "",
+    val developerName: String = "AKustom15",
+    val moreAppsUrl: String = "",
+    val moreApps: List<MoreApp> = emptyList(),
+    val moreAppsJsonUrl: String = "",
+    val privacyPolicyUrl: String = "",
+
+    // Changelog
     val changelog: ChangelogConfig = ChangelogConfig(),
+
+    // Splash screen
     val splashAnimationDurationMs: Long = 3000L,
     val splashTextParts: List<String> = emptyList(),
+
+    // Iconos de redes sociales (pantalla About)
     @DrawableRes val xIcon: Int = android.R.drawable.ic_menu_send,
     @DrawableRes val instagramIcon: Int = android.R.drawable.ic_menu_camera,
     @DrawableRes val youtubeIcon: Int = android.R.drawable.ic_media_play,
     @DrawableRes val facebookIcon: Int = android.R.drawable.ic_menu_share,
     @DrawableRes val telegramIcon: Int = android.R.drawable.ic_menu_send
 ) {
+    /** Obtener la lista de tabs visibles según la configuración */
     fun getVisibleTabs(): List<CrushTab> {
         return buildList {
             add(CrushTab.Dashboard)
+            if (showIconsTab) add(CrushTab.Icons)
             if (showWidgets) add(CrushTab.Widgets)
+            if (showWallpapers) add(CrushTab.Wallpapers)
             if (showWallpaperCloud) add(CrushTab.WallpaperCloud)
         }
     }
 }
 
+/** Tabs disponibles en la navegación inferior */
 enum class CrushTab {
     Dashboard,
+    Icons,
     Widgets,
+    Wallpapers,
     WallpaperCloud
 }
 
+/** Tipo de widget Kustom */
 enum class WidgetType {
     KWGT,
     KLWP
 }
+
+/** Modelo para "Más apps" en la pantalla About */
+data class MoreApp(
+    val name: String,
+    val description: String = "",
+    val iconUrl: String = "",
+    val playStoreUrl: String = ""
+)

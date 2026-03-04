@@ -59,6 +59,9 @@ class CrushPreferences private constructor(context: Context) {
     private val _accentColor = MutableStateFlow(getAccentColor())
     val accentColor: StateFlow<AccentColor> = _accentColor.asStateFlow()
 
+    private val _downloadOnWifiOnly = MutableStateFlow(getDownloadOnWifiOnly())
+    val downloadOnWifiOnly: StateFlow<Boolean> = _downloadOnWifiOnly.asStateFlow()
+
     private val _notificationsEnabled = MutableStateFlow(getNotificationsEnabled())
     val notificationsEnabled: StateFlow<Boolean> = _notificationsEnabled.asStateFlow()
 
@@ -121,6 +124,16 @@ class CrushPreferences private constructor(context: Context) {
         _accentColor.value = color
     }
 
+    // Descargar solo en WiFi
+    fun getDownloadOnWifiOnly(): Boolean {
+        return prefs.getBoolean(KEY_DOWNLOAD_WIFI_ONLY, false)
+    }
+
+    fun setDownloadOnWifiOnly(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_DOWNLOAD_WIFI_ONLY, enabled).apply()
+        _downloadOnWifiOnly.value = enabled
+    }
+
     fun getNotificationsEnabled(): Boolean {
         return prefs.getBoolean(KEY_NOTIFICATIONS_ENABLED, true)
     }
@@ -171,6 +184,7 @@ class CrushPreferences private constructor(context: Context) {
         private const val KEY_THEME_MODE = "theme_mode"
         private const val KEY_APP_LANGUAGE = "app_language"
         private const val KEY_ACCENT_COLOR = "accent_color"
+        private const val KEY_DOWNLOAD_WIFI_ONLY = "download_wifi_only"
         private const val KEY_NOTIFICATIONS_ENABLED = "notifications_enabled"
         private const val KEY_GRID_COLUMNS = "grid_columns"
 

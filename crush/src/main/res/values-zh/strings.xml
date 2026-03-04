@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_dashboard">首页</string>
+    <string name="tab_icons">图标</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">壁纸</string>
+
+    <string name="search_placeholder">搜索…</string>
+
+    <string name="menu_changelog">更新日志</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_settings">设置</string>
+
+    <string name="apply_icons_button">应用图标</string>
+    <string name="icons_count_label">图标</string>
+    <string name="wallpapers_label">壁纸</string>
+    <string name="icon_request_label">请求图标</string>
+    <string name="icon_preview_label">预览</string>
+    <string name="more_apps_label">更多应用</string>
+    <string name="about_label">关于</string>
+    <string name="settings_label">设置</string>
+    <string name="total_apps_label">设备上的应用</string>
+    <string name="themed_apps_label">主题图标</string>
+    <string name="missing_apps_label">缺失图标</string>
+    <string name="loading_icons">正在加载图标…</string>
+    <string name="dashboard_apply_to">应用到</string>
+
+    <string name="icons_title">图标</string>
+    <string name="icons_all">全部</string>
+    <string name="icons_new">新增</string>
+    <string name="icons_total">共计：%d 个图标</string>
+    <string name="icons_no_results">未找到图标</string>
+    <string name="icons_categories">分类</string>
+
+    <string name="icon_request_title">图标请求</string>
+    <string name="icon_request_free">免费请求</string>
+    <string name="icon_request_premium">高级请求</string>
+    <string name="icon_request_free_desc">免费请求最多 %d 个图标</string>
+    <string name="icon_request_premium_desc">通过邮件无限请求</string>
+    <string name="icon_request_select_apps">选择要请求的应用</string>
+    <string name="icon_request_selected">已选 %d 个</string>
+    <string name="icon_request_send">发送请求</string>
+    <string name="icon_request_email_subject">图标请求 - %s</string>
+    <string name="icon_request_no_email">未找到邮件应用</string>
+    <string name="icon_request_limit_reached">已达到免费请求限制（%d 个图标）</string>
+    <string name="icon_request_empty">请至少选择一个应用</string>
+    <string name="icon_request_premium_email_subject">高级图标请求 - %s</string>
+
+    <string name="launcher_selection_title">选择启动器</string>
+    <string name="launcher_dialog_cancel">取消</string>
+    <string name="launcher_not_found">未找到启动器</string>
+    <string name="launcher_applied">图标应用成功！</string>
+    <string name="launcher_apply_error">无法应用图标</string>
+
+    <string name="btn_apply">应用</string>
+    <string name="cancel">取消</string>
+    <string name="close">关闭</string>
+    <string name="ok">确定</string>
+    <string name="retry">重试</string>
+
+    <string name="no_widgets_found">未找到小部件</string>
+    <string name="no_wallpapers_found">未找到壁纸</string>
+
+    <string name="loading_wallpapers">正在加载壁纸…</string>
+    <string name="no_wallpapers_available">没有可用壁纸</string>
+    <string name="apply_wallpaper">应用壁纸</string>
+    <string name="home_screen">主屏幕</string>
+    <string name="lock_screen">锁屏</string>
+    <string name="both_screens">两个屏幕</string>
+    <string name="wallpaper_info">壁纸信息</string>
+    <string name="download">下载</string>
+    <string name="download_started">下载已开始</string>
+    <string name="download_failed">下载失败</string>
+    <string name="downloading_title">正在下载 %s</string>
+    <string name="downloading_description">正在下载壁纸…</string>
+    <string name="wallpaper_downloaded">壁纸已下载！</string>
+    <string name="wallpaper_applied">壁纸已应用！</string>
+    <string name="wallpaper_applied_home">壁纸已应用到主屏幕！</string>
+    <string name="wallpaper_applied_lock">壁纸已应用到锁屏！</string>
+    <string name="wallpaper_applied_both">壁纸已应用到两个屏幕！</string>
+    <string name="wallpaper_by_author">作者 %s</string>
+    <string name="wallpaper_failed_load">加载图片失败</string>
+    <string name="wallpaper_failed_apply">应用壁纸失败</string>
+    <string name="wallpaper_info_name">名称</string>
+    <string name="wallpaper_info_author">作者</string>
+    <string name="wallpaper_info_resolution">分辨率</string>
+    <string name="wallpaper_info_collection">合集</string>
+    <string name="wifi_only_enabled">仅WiFi模式已启用。连接WiFi以加载壁纸。</string>
+
+    <string name="settings_title">设置</string>
+    <string name="settings_appearance">外观</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">深色</string>
+    <string name="settings_theme_system">跟随系统</string>
+    <string name="settings_accent_color">强调色</string>
+    <string name="settings_select_accent_color">选择强调色</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_app_language">应用语言</string>
+    <string name="settings_data_cache">数据和缓存</string>
+    <string name="settings_clear_cache">清除图片缓存</string>
+    <string name="settings_clear_cache_desc">释放存储空间</string>
+    <string name="settings_cache_cleared">缓存清除成功</string>
+    <string name="settings_cache_error">清除缓存出错</string>
+    <string name="settings_download_wifi">仅在WiFi下载</string>
+    <string name="settings_download_wifi_desc">下载时节省移动数据</string>
+    <string name="settings_notifications">通知</string>
+    <string name="settings_notifications_desc">接收更新和新内容提醒</string>
+    <string name="settings_info">信息</string>
+    <string name="settings_version">应用版本</string>
+    <string name="settings_rate">在Google Play上评分</string>
+    <string name="settings_rate_desc">您的评价帮助我们改进！</string>
+    <string name="settings_report">报告问题</string>
+    <string name="settings_report_desc">向我们发送反馈</string>
+    <string name="settings_no_email_app">未安装邮件应用</string>
+    <string name="settings_select_theme">选择主题</string>
+    <string name="settings_select_language">选择语言</string>
+    <string name="settings_grid_view">网格视图</string>
+    <string name="settings_one_column">一列</string>
+    <string name="settings_two_columns">两列</string>
+    <string name="settings_check_update">检查更新</string>
+    <string name="settings_check_update_desc">检查是否有新版本可用</string>
+    <string name="settings_up_to_date">已是最新版本！</string>
+    <string name="settings_update_error">无法检查更新</string>
+    <string name="settings_checking_update">正在检查更新…</string>
+
+    <string name="about_title">关于</string>
+    <string name="about_back">返回</string>
+    <string name="about_developer">开发者</string>
+    <string name="about_developer_desc">我是一名不断学习的开发者和设计师，热衷于屏幕自定义。如果您喜欢我的作品，请支持、评分并关注我的社交媒体。</string>
+    <string name="about_more_apps">更多应用</string>
+    <string name="about_more_apps_title">更多应用</string>
+    <string name="about_more_apps_desc">发现更多应用和实用资源</string>
+    <string name="about_install">安装</string>
+    <string name="about_privacy_policy">隐私政策</string>
+    <string name="about_error_opening_link">打开链接出错</string>
+
+    <string name="changelog_title">更新日志</string>
+    <string name="changelog_accept">接受</string>
+    <string name="changelog_widgets">共计 %d 个精美小部件</string>
+    <string name="changelog_wallpapers">共计 %d 个精美壁纸</string>
+    <string name="changelog_icons">共计 %d 个图标</string>
+    <string name="changelog_widgets_added">精美小部件已添加</string>
+    <string name="changelog_more_widgets_soon">即将推出更多小部件</string>
+
+    <string name="notification_channel_name">更新</string>
+    <string name="notification_channel_desc">新版本和内容通知</string>
+
+    <string name="error_starting_app">启动应用出错</string>
+    <string name="security_error">安全错误</string>
+</resources>

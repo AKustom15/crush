@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_dashboard">Beranda</string>
+    <string name="tab_icons">Ikon</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">Wallpaper</string>
+
+    <string name="search_placeholder">Cari…</string>
+
+    <string name="menu_changelog">Perubahan</string>
+    <string name="menu_about">Tentang</string>
+    <string name="menu_settings">Pengaturan</string>
+
+    <string name="apply_icons_button">Terapkan ikon</string>
+    <string name="icons_count_label">Ikon</string>
+    <string name="wallpapers_label">Wallpaper</string>
+    <string name="icon_request_label">Minta ikon</string>
+    <string name="icon_preview_label">Pratinjau</string>
+    <string name="more_apps_label">Aplikasi lainnya</string>
+    <string name="about_label">Tentang</string>
+    <string name="settings_label">Pengaturan</string>
+    <string name="total_apps_label">aplikasi di perangkat Anda</string>
+    <string name="themed_apps_label">ikon bertema</string>
+    <string name="missing_apps_label">ikon yang hilang</string>
+    <string name="loading_icons">Memuat ikon…</string>
+    <string name="dashboard_apply_to">Terapkan ke</string>
+
+    <string name="icons_title">Ikon</string>
+    <string name="icons_all">Semua</string>
+    <string name="icons_new">Baru</string>
+    <string name="icons_total">Total: %d ikon</string>
+    <string name="icons_no_results">Tidak ada ikon ditemukan</string>
+    <string name="icons_categories">Kategori</string>
+
+    <string name="icon_request_title">Permintaan ikon</string>
+    <string name="icon_request_free">Permintaan gratis</string>
+    <string name="icon_request_premium">Permintaan premium</string>
+    <string name="icon_request_free_desc">Minta hingga %d ikon gratis</string>
+    <string name="icon_request_premium_desc">Permintaan tak terbatas melalui email</string>
+    <string name="icon_request_select_apps">Pilih aplikasi untuk diminta</string>
+    <string name="icon_request_selected">%d dipilih</string>
+    <string name="icon_request_send">Kirim permintaan</string>
+    <string name="icon_request_email_subject">Permintaan ikon - %s</string>
+    <string name="icon_request_no_email">Tidak ada aplikasi email ditemukan</string>
+    <string name="icon_request_limit_reached">Batas permintaan gratis tercapai (%d ikon)</string>
+    <string name="icon_request_empty">Pilih setidaknya satu aplikasi</string>
+    <string name="icon_request_premium_email_subject">Permintaan ikon premium - %s</string>
+
+    <string name="launcher_selection_title">Pilih launcher</string>
+    <string name="launcher_dialog_cancel">Batal</string>
+    <string name="launcher_not_found">Launcher tidak ditemukan</string>
+    <string name="launcher_applied">Ikon berhasil diterapkan!</string>
+    <string name="launcher_apply_error">Tidak dapat menerapkan ikon</string>
+
+    <string name="btn_apply">Terapkan</string>
+    <string name="cancel">Batal</string>
+    <string name="close">Tutup</string>
+    <string name="ok">OK</string>
+    <string name="retry">Coba lagi</string>
+
+    <string name="no_widgets_found">Tidak ada widget ditemukan</string>
+    <string name="no_wallpapers_found">Tidak ada wallpaper ditemukan</string>
+
+    <string name="loading_wallpapers">Memuat wallpaper…</string>
+    <string name="no_wallpapers_available">Tidak ada wallpaper tersedia</string>
+    <string name="apply_wallpaper">Terapkan wallpaper</string>
+    <string name="home_screen">Layar utama</string>
+    <string name="lock_screen">Layar kunci</string>
+    <string name="both_screens">Kedua layar</string>
+    <string name="wallpaper_info">Info wallpaper</string>
+    <string name="download">Unduh</string>
+    <string name="download_started">Unduhan dimulai</string>
+    <string name="download_failed">Unduhan gagal</string>
+    <string name="downloading_title">Mengunduh %s</string>
+    <string name="downloading_description">Mengunduh wallpaper…</string>
+    <string name="wallpaper_downloaded">Wallpaper terunduh!</string>
+    <string name="wallpaper_applied">Wallpaper diterapkan!</string>
+    <string name="wallpaper_applied_home">Wallpaper diterapkan ke layar utama!</string>
+    <string name="wallpaper_applied_lock">Wallpaper diterapkan ke layar kunci!</string>
+    <string name="wallpaper_applied_both">Wallpaper diterapkan ke kedua layar!</string>
+    <string name="wallpaper_by_author">oleh %s</string>
+    <string name="wallpaper_failed_load">Gagal memuat gambar</string>
+    <string name="wallpaper_failed_apply">Gagal menerapkan wallpaper</string>
+    <string name="wallpaper_info_name">Nama</string>
+    <string name="wallpaper_info_author">Penulis</string>
+    <string name="wallpaper_info_resolution">Resolusi</string>
+    <string name="wallpaper_info_collection">Koleksi</string>
+    <string name="wifi_only_enabled">Mode hanya WiFi aktif. Hubungkan ke WiFi untuk memuat wallpaper.</string>
+
+    <string name="settings_title">Pengaturan</string>
+    <string name="settings_appearance">Tampilan</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Terang</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_theme_system">Ikuti sistem</string>
+    <string name="settings_accent_color">Warna aksen</string>
+    <string name="settings_select_accent_color">Pilih warna aksen</string>
+    <string name="settings_language">Bahasa</string>
+    <string name="settings_app_language">Bahasa aplikasi</string>
+    <string name="settings_data_cache">Data dan cache</string>
+    <string name="settings_clear_cache">Bersihkan cache gambar</string>
+    <string name="settings_clear_cache_desc">Bebaskan ruang penyimpanan</string>
+    <string name="settings_cache_cleared">Cache berhasil dibersihkan</string>
+    <string name="settings_cache_error">Kesalahan saat membersihkan cache</string>
+    <string name="settings_download_wifi">Unduh hanya di WiFi</string>
+    <string name="settings_download_wifi_desc">Hemat data seluler saat mengunduh</string>
+    <string name="settings_notifications">Notifikasi</string>
+    <string name="settings_notifications_desc">Terima peringatan pembaruan dan konten baru</string>
+    <string name="settings_info">Informasi</string>
+    <string name="settings_version">Versi aplikasi</string>
+    <string name="settings_rate">Nilai di Google Play</string>
+    <string name="settings_rate_desc">Pendapat Anda membantu kami meningkatkan!</string>
+    <string name="settings_report">Laporkan masalah</string>
+    <string name="settings_report_desc">Kirimkan umpan balik Anda</string>
+    <string name="settings_no_email_app">Tidak ada aplikasi email terpasang</string>
+    <string name="settings_select_theme">Pilih tema</string>
+    <string name="settings_select_language">Pilih bahasa</string>
+    <string name="settings_grid_view">Tampilan grid</string>
+    <string name="settings_one_column">Satu kolom</string>
+    <string name="settings_two_columns">Dua kolom</string>
+    <string name="settings_check_update">Periksa pembaruan</string>
+    <string name="settings_check_update_desc">Periksa apakah versi baru tersedia</string>
+    <string name="settings_up_to_date">Anda sudah terbaru!</string>
+    <string name="settings_update_error">Tidak dapat memeriksa pembaruan</string>
+    <string name="settings_checking_update">Memeriksa pembaruan…</string>
+
+    <string name="about_title">Tentang</string>
+    <string name="about_back">Kembali</string>
+    <string name="about_developer">Pengembang</string>
+    <string name="about_developer_desc">Saya seorang pengembang dan desainer yang terus belajar, bersemangat tentang kustomisasi layar. Jika Anda menyukai karya saya, dukung, beri nilai dan ikuti saya di media sosial.</string>
+    <string name="about_more_apps">Aplikasi Lainnya</string>
+    <string name="about_more_apps_title">Aplikasi Lainnya</string>
+    <string name="about_more_apps_desc">Temukan lebih banyak aplikasi dan sumber daya berguna</string>
+    <string name="about_install">PASANG</string>
+    <string name="about_privacy_policy">Kebijakan privasi</string>
+    <string name="about_error_opening_link">Kesalahan saat membuka tautan</string>
+
+    <string name="changelog_title">Perubahan</string>
+    <string name="changelog_accept">Terima</string>
+    <string name="changelog_widgets">Total %d widget indah</string>
+    <string name="changelog_wallpapers">Total %d wallpaper indah</string>
+    <string name="changelog_icons">Total %d ikon</string>
+    <string name="changelog_widgets_added">Widget indah ditambahkan</string>
+    <string name="changelog_more_widgets_soon">Segera lebih banyak widget</string>
+
+    <string name="notification_channel_name">Pembaruan</string>
+    <string name="notification_channel_desc">Notifikasi untuk versi baru dan konten</string>
+
+    <string name="error_starting_app">Kesalahan saat memulai aplikasi</string>
+    <string name="security_error">Kesalahan keamanan</string>
+</resources>

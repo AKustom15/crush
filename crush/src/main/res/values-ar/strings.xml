@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_dashboard">الرئيسية</string>
+    <string name="tab_icons">الأيقونات</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">خلفيات</string>
+
+    <string name="search_placeholder">بحث…</string>
+
+    <string name="menu_changelog">سجل التغييرات</string>
+    <string name="menu_about">حول</string>
+    <string name="menu_settings">الإعدادات</string>
+
+    <string name="apply_icons_button">تطبيق الأيقونات</string>
+    <string name="icons_count_label">أيقونات</string>
+    <string name="wallpapers_label">خلفيات</string>
+    <string name="icon_request_label">طلب أيقونات</string>
+    <string name="icon_preview_label">معاينة</string>
+    <string name="more_apps_label">المزيد من التطبيقات</string>
+    <string name="about_label">حول</string>
+    <string name="settings_label">الإعدادات</string>
+    <string name="total_apps_label">تطبيقات على جهازك</string>
+    <string name="themed_apps_label">أيقونات مُخصصة</string>
+    <string name="missing_apps_label">أيقونات مفقودة</string>
+    <string name="loading_icons">جاري تحميل الأيقونات…</string>
+    <string name="dashboard_apply_to">تطبيق على</string>
+
+    <string name="icons_title">الأيقونات</string>
+    <string name="icons_all">الكل</string>
+    <string name="icons_new">جديد</string>
+    <string name="icons_total">الإجمالي: %d أيقونة</string>
+    <string name="icons_no_results">لم يتم العثور على أيقونات</string>
+    <string name="icons_categories">الفئات</string>
+
+    <string name="icon_request_title">طلب أيقونات</string>
+    <string name="icon_request_free">طلب مجاني</string>
+    <string name="icon_request_premium">طلب مميز</string>
+    <string name="icon_request_free_desc">اطلب حتى %d أيقونة مجاناً</string>
+    <string name="icon_request_premium_desc">طلبات غير محدودة عبر البريد</string>
+    <string name="icon_request_select_apps">اختر التطبيقات للطلب</string>
+    <string name="icon_request_selected">%d مُختارة</string>
+    <string name="icon_request_send">إرسال الطلب</string>
+    <string name="icon_request_email_subject">طلب أيقونات - %s</string>
+    <string name="icon_request_no_email">لم يتم العثور على تطبيق بريد</string>
+    <string name="icon_request_limit_reached">وصلت إلى حد الطلبات المجانية (%d أيقونة)</string>
+    <string name="icon_request_empty">يرجى اختيار تطبيق واحد على الأقل</string>
+    <string name="icon_request_premium_email_subject">طلب أيقونات مميز - %s</string>
+
+    <string name="launcher_selection_title">اختر المشغل</string>
+    <string name="launcher_dialog_cancel">إلغاء</string>
+    <string name="launcher_not_found">المشغل غير موجود</string>
+    <string name="launcher_applied">تم تطبيق الأيقونات بنجاح!</string>
+    <string name="launcher_apply_error">تعذر تطبيق الأيقونات</string>
+
+    <string name="btn_apply">تطبيق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="close">إغلاق</string>
+    <string name="ok">موافق</string>
+    <string name="retry">إعادة المحاولة</string>
+
+    <string name="no_widgets_found">لم يتم العثور على ودجات</string>
+    <string name="no_wallpapers_found">لم يتم العثور على خلفيات</string>
+
+    <string name="loading_wallpapers">جاري تحميل الخلفيات…</string>
+    <string name="no_wallpapers_available">لا توجد خلفيات متاحة</string>
+    <string name="apply_wallpaper">تطبيق الخلفية</string>
+    <string name="home_screen">الشاشة الرئيسية</string>
+    <string name="lock_screen">شاشة القفل</string>
+    <string name="both_screens">كلا الشاشتين</string>
+    <string name="wallpaper_info">معلومات الخلفية</string>
+    <string name="download">تحميل</string>
+    <string name="download_started">بدأ التحميل</string>
+    <string name="download_failed">فشل التحميل</string>
+    <string name="downloading_title">جاري تحميل %s</string>
+    <string name="downloading_description">جاري تحميل الخلفية…</string>
+    <string name="wallpaper_downloaded">تم تحميل الخلفية!</string>
+    <string name="wallpaper_applied">تم تطبيق الخلفية!</string>
+    <string name="wallpaper_applied_home">تم تطبيق الخلفية على الشاشة الرئيسية!</string>
+    <string name="wallpaper_applied_lock">تم تطبيق الخلفية على شاشة القفل!</string>
+    <string name="wallpaper_applied_both">تم تطبيق الخلفية على كلا الشاشتين!</string>
+    <string name="wallpaper_by_author">بواسطة %s</string>
+    <string name="wallpaper_failed_load">فشل تحميل الصورة</string>
+    <string name="wallpaper_failed_apply">فشل تطبيق الخلفية</string>
+    <string name="wallpaper_info_name">الاسم</string>
+    <string name="wallpaper_info_author">المؤلف</string>
+    <string name="wallpaper_info_resolution">الدقة</string>
+    <string name="wallpaper_info_collection">المجموعة</string>
+    <string name="wifi_only_enabled">وضع WiFi فقط مُفعّل. اتصل بـ WiFi لتحميل الخلفيات.</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_appearance">المظهر</string>
+    <string name="settings_theme">السمة</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_theme_dark">داكن</string>
+    <string name="settings_theme_system">اتباع النظام</string>
+    <string name="settings_accent_color">لون التمييز</string>
+    <string name="settings_select_accent_color">اختر لون التمييز</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_app_language">لغة التطبيق</string>
+    <string name="settings_data_cache">البيانات والتخزين المؤقت</string>
+    <string name="settings_clear_cache">مسح ذاكرة الصور</string>
+    <string name="settings_clear_cache_desc">تحرير مساحة التخزين</string>
+    <string name="settings_cache_cleared">تم مسح التخزين المؤقت بنجاح</string>
+    <string name="settings_cache_error">خطأ في مسح التخزين المؤقت</string>
+    <string name="settings_download_wifi">التحميل عبر WiFi فقط</string>
+    <string name="settings_download_wifi_desc">توفير بيانات الهاتف أثناء التحميل</string>
+    <string name="settings_notifications">الإشعارات</string>
+    <string name="settings_notifications_desc">تلقي تنبيهات التحديثات والمحتوى الجديد</string>
+    <string name="settings_info">المعلومات</string>
+    <string name="settings_version">إصدار التطبيق</string>
+    <string name="settings_rate">تقييم على Google Play</string>
+    <string name="settings_rate_desc">رأيك يساعدنا على التحسين!</string>
+    <string name="settings_report">الإبلاغ عن مشكلة</string>
+    <string name="settings_report_desc">أرسل لنا ملاحظاتك</string>
+    <string name="settings_no_email_app">لا يوجد تطبيق بريد مُثبت</string>
+    <string name="settings_select_theme">اختر السمة</string>
+    <string name="settings_select_language">اختر اللغة</string>
+    <string name="settings_grid_view">عرض شبكي</string>
+    <string name="settings_one_column">عمود واحد</string>
+    <string name="settings_two_columns">عمودان</string>
+    <string name="settings_check_update">التحقق من التحديثات</string>
+    <string name="settings_check_update_desc">التحقق من توفر إصدار جديد</string>
+    <string name="settings_up_to_date">أنت محدّث!</string>
+    <string name="settings_update_error">تعذر التحقق من التحديثات</string>
+    <string name="settings_checking_update">جاري التحقق من التحديثات…</string>
+
+    <string name="about_title">حول</string>
+    <string name="about_back">رجوع</string>
+    <string name="about_developer">المطور</string>
+    <string name="about_developer_desc">أنا مطور ومصمم في تعلم مستمر، شغوف بتخصيص الشاشات. إذا أعجبك عملي، ادعمني وقيّمني وتابعني على وسائل التواصل الاجتماعي.</string>
+    <string name="about_more_apps">المزيد من التطبيقات</string>
+    <string name="about_more_apps_title">المزيد من التطبيقات</string>
+    <string name="about_more_apps_desc">اكتشف المزيد من التطبيقات والموارد المفيدة</string>
+    <string name="about_install">تثبيت</string>
+    <string name="about_privacy_policy">سياسة الخصوصية</string>
+    <string name="about_error_opening_link">خطأ في فتح الرابط</string>
+
+    <string name="changelog_title">سجل التغييرات</string>
+    <string name="changelog_accept">قبول</string>
+    <string name="changelog_widgets">إجمالي %d ودجة جميلة</string>
+    <string name="changelog_wallpapers">إجمالي %d خلفية جميلة</string>
+    <string name="changelog_icons">إجمالي %d أيقونة</string>
+    <string name="changelog_widgets_added">تمت إضافة ودجات جميلة</string>
+    <string name="changelog_more_widgets_soon">قريباً المزيد من الودجات</string>
+
+    <string name="notification_channel_name">التحديثات</string>
+    <string name="notification_channel_desc">إشعارات للإصدارات الجديدة والمحتوى</string>
+
+    <string name="error_starting_app">خطأ في تشغيل التطبيق</string>
+    <string name="security_error">خطأ أمني</string>
+</resources>

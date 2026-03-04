@@ -1,7 +1,5 @@
 package com.akustom15.crush.ui.screens.dashboard
 
-import android.content.Context
-import android.content.res.XmlResourceParser
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,11 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.akustom15.crush.R
 import com.akustom15.crush.config.CrushConfig
+import com.akustom15.crush.iconpack.AppFilterParser
 import com.akustom15.crush.iconpack.IconPackManager
+import com.akustom15.crush.iconpack.IconRequestHelper
 import com.akustom15.crush.ui.components.RotatingIconAnimation
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
-import java.io.IOException
 
 @Composable
 fun DashboardScreen(
@@ -38,22 +35,25 @@ fun DashboardScreen(
 ) {
     val context = LocalContext.current
 
-    val iconResourceNames = remember(context, config.appFilterXmlRes) {
-        if (config.appFilterXmlRes != 0) {
-            loadIconNamesFromAppFilter(context, config.appFilterXmlRes)
-        } else {
+    // Cargar nombres de iconos desde assets/appfilter.xml
+    val iconResourceNames = remember(context) {
+        try {
+            AppFilterParser.parseAppFilter(context).map { it.drawableName }
+        } catch (e: Exception) {
+            Log.e("DashboardScreen", "Error loading icon names from assets", e)
             emptyList()
         }
     }
 
-    val counters = remember(context) {
-        IconPackManager.getAppCounters(context)
-    }
+    // Contadores de apps temáticas vs total
+    val totalApps = remember(context) { IconRequestHelper.getTotalAppCount(context) }
+    val themedApps = remember(context) { IconRequestHelper.getThemedAppCount(context) }
+    val missingApps = remember(totalApps, themedApps) { (totalApps - themedApps).coerceAtLeast(0) }
 
     var totalIcons by remember { mutableStateOf(0) }
     LaunchedEffect(Unit) {
         totalIcons = try {
-            IconPackManager.getTotalIconsCount(context)
+            AppFilterParser.getIconCount(context)
         } catch (e: Exception) {
             Log.e("DashboardScreen", "Error getting icon count", e)
             0
@@ -207,20 +207,20 @@ fun DashboardScreen(
                             )
                             Spacer(modifier = Modifier.height(6.dp))
                             Text(
-                                text = "${counters.totalApps} ${stringResource(R.string.total_apps_label)}",
+                                text = "${totalApps} ${stringResource(R.string.total_apps_label)}",
                                 color = MaterialTheme.colorScheme.onSurface,
                                 fontSize = 14.sp
                             )
                             Spacer(modifier = Modifier.height(6.dp))
                             Text(
-                                text = "${counters.themedApps} ${stringResource(R.string.themed_apps_label)}",
+                                text = "${themedApps} ${stringResource(R.string.themed_apps_label)}",
                                 color = MaterialTheme.colorScheme.onSurface,
                                 fontSize = 14.sp
                             )
                             Spacer(modifier = Modifier.height(6.dp))
                             // Progress bar
-                            val progress = if (counters.totalApps > 0)
-                                counters.themedApps.toFloat() / counters.totalApps else 0f
+                            val progress = if (totalApps > 0)
+                                themedApps.toFloat() / totalApps else 0f
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -242,7 +242,7 @@ fun DashboardScreen(
                             }
                             Spacer(modifier = Modifier.height(6.dp))
                             Text(
-                                text = "${counters.missingApps} ${stringResource(R.string.missing_apps_label)}",
+                                text = "${missingApps} ${stringResource(R.string.missing_apps_label)}",
                                 color = MaterialTheme.colorScheme.onSurface,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
@@ -351,30 +351,3 @@ private fun DashboardCard(
     }
 }
 
-private fun loadIconNamesFromAppFilter(context: Context, xmlRes: Int): List<String> {
-    val iconNames = mutableListOf<String>()
-    var parser: XmlResourceParser? = null
-    try {
-        parser = context.resources.getXml(xmlRes)
-        var eventType = parser.eventType
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            if (eventType == XmlPullParser.START_TAG && parser.name == "item") {
-                for (i in 0 until parser.attributeCount) {
-                    if (parser.getAttributeName(i) == "drawable") {
-                        parser.getAttributeValue(i)?.let { iconNames.add(it) }
-                    }
-                }
-            }
-            eventType = parser.next()
-        }
-    } catch (e: XmlPullParserException) {
-        Log.e("DashboardScreen", "Error parsing appfilter XML", e)
-    } catch (e: IOException) {
-        Log.e("DashboardScreen", "Error reading appfilter XML", e)
-    } catch (e: Exception) {
-        Log.e("DashboardScreen", "Unexpected error loading icons from appfilter", e)
-    } finally {
-        parser?.close()
-    }
-    return iconNames
-}

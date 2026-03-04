@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_dashboard">होम</string>
+    <string name="tab_icons">आइकन</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">वॉलपेपर</string>
+
+    <string name="search_placeholder">खोजें…</string>
+
+    <string name="menu_changelog">बदलाव</string>
+    <string name="menu_about">के बारे में</string>
+    <string name="menu_settings">सेटिंग्स</string>
+
+    <string name="apply_icons_button">आइकन लागू करें</string>
+    <string name="icons_count_label">आइकन</string>
+    <string name="wallpapers_label">वॉलपेपर</string>
+    <string name="icon_request_label">आइकन अनुरोध</string>
+    <string name="icon_preview_label">पूर्वावलोकन</string>
+    <string name="more_apps_label">अधिक ऐप्स</string>
+    <string name="about_label">के बारे में</string>
+    <string name="settings_label">सेटिंग्स</string>
+    <string name="total_apps_label">आपके डिवाइस पर ऐप्स</string>
+    <string name="themed_apps_label">थीम आइकन</string>
+    <string name="missing_apps_label">गायब आइकन</string>
+    <string name="loading_icons">आइकन लोड हो रहे हैं…</string>
+    <string name="dashboard_apply_to">लागू करें</string>
+
+    <string name="icons_title">आइकन</string>
+    <string name="icons_all">सभी</string>
+    <string name="icons_new">नए</string>
+    <string name="icons_total">कुल: %d आइकन</string>
+    <string name="icons_no_results">कोई आइकन नहीं मिला</string>
+    <string name="icons_categories">श्रेणियाँ</string>
+
+    <string name="icon_request_title">आइकन अनुरोध</string>
+    <string name="icon_request_free">मुफ्त अनुरोध</string>
+    <string name="icon_request_premium">प्रीमियम अनुरोध</string>
+    <string name="icon_request_free_desc">%d आइकन तक मुफ्त अनुरोध करें</string>
+    <string name="icon_request_premium_desc">ईमेल द्वारा असीमित अनुरोध</string>
+    <string name="icon_request_select_apps">अनुरोध करने के लिए ऐप्स चुनें</string>
+    <string name="icon_request_selected">%d चयनित</string>
+    <string name="icon_request_send">अनुरोध भेजें</string>
+    <string name="icon_request_email_subject">आइकन अनुरोध - %s</string>
+    <string name="icon_request_no_email">कोई ईमेल ऐप नहीं मिला</string>
+    <string name="icon_request_limit_reached">मुफ्त अनुरोध सीमा पूरी (%d आइकन)</string>
+    <string name="icon_request_empty">कृपया कम से कम एक ऐप चुनें</string>
+    <string name="icon_request_premium_email_subject">प्रीमियम आइकन अनुरोध - %s</string>
+
+    <string name="launcher_selection_title">लॉन्चर चुनें</string>
+    <string name="launcher_dialog_cancel">रद्द करें</string>
+    <string name="launcher_not_found">लॉन्चर नहीं मिला</string>
+    <string name="launcher_applied">आइकन सफलतापूर्वक लागू!</string>
+    <string name="launcher_apply_error">आइकन लागू नहीं हो सके</string>
+
+    <string name="btn_apply">लागू करें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="close">बंद करें</string>
+    <string name="ok">ठीक है</string>
+    <string name="retry">पुनः प्रयास करें</string>
+
+    <string name="no_widgets_found">कोई विजेट नहीं मिला</string>
+    <string name="no_wallpapers_found">कोई वॉलपेपर नहीं मिला</string>
+
+    <string name="loading_wallpapers">वॉलपेपर लोड हो रहे हैं…</string>
+    <string name="no_wallpapers_available">कोई वॉलपेपर उपलब्ध नहीं</string>
+    <string name="apply_wallpaper">वॉलपेपर लागू करें</string>
+    <string name="home_screen">होम स्क्रीन</string>
+    <string name="lock_screen">लॉक स्क्रीन</string>
+    <string name="both_screens">दोनों स्क्रीन</string>
+    <string name="wallpaper_info">वॉलपेपर जानकारी</string>
+    <string name="download">डाउनलोड</string>
+    <string name="download_started">डाउनलोड शुरू</string>
+    <string name="download_failed">डाउनलोड विफल</string>
+    <string name="downloading_title">%s डाउनलोड हो रहा है</string>
+    <string name="downloading_description">वॉलपेपर डाउनलोड हो रहा है…</string>
+    <string name="wallpaper_downloaded">वॉलपेपर डाउनलोड हुआ!</string>
+    <string name="wallpaper_applied">वॉलपेपर लागू!</string>
+    <string name="wallpaper_applied_home">होम स्क्रीन पर वॉलपेपर लागू!</string>
+    <string name="wallpaper_applied_lock">लॉक स्क्रीन पर वॉलपेपर लागू!</string>
+    <string name="wallpaper_applied_both">दोनों स्क्रीन पर वॉलपेपर लागू!</string>
+    <string name="wallpaper_by_author">%s द्वारा</string>
+    <string name="wallpaper_failed_load">छवि लोड करने में विफल</string>
+    <string name="wallpaper_failed_apply">वॉलपेपर लागू करने में विफल</string>
+    <string name="wallpaper_info_name">नाम</string>
+    <string name="wallpaper_info_author">लेखक</string>
+    <string name="wallpaper_info_resolution">रिज़ॉल्यूशन</string>
+    <string name="wallpaper_info_collection">संग्रह</string>
+    <string name="wifi_only_enabled">केवल WiFi मोड सक्रिय। वॉलपेपर लोड करने के लिए WiFi से कनेक्ट करें।</string>
+
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_appearance">दिखावट</string>
+    <string name="settings_theme">थीम</string>
+    <string name="settings_theme_light">लाइट</string>
+    <string name="settings_theme_dark">डार्क</string>
+    <string name="settings_theme_system">सिस्टम के अनुसार</string>
+    <string name="settings_accent_color">एक्सेंट रंग</string>
+    <string name="settings_select_accent_color">एक्सेंट रंग चुनें</string>
+    <string name="settings_language">भाषा</string>
+    <string name="settings_app_language">ऐप भाषा</string>
+    <string name="settings_data_cache">डेटा और कैश</string>
+    <string name="settings_clear_cache">इमेज कैश साफ करें</string>
+    <string name="settings_clear_cache_desc">स्टोरेज स्पेस खाली करें</string>
+    <string name="settings_cache_cleared">कैश सफलतापूर्वक साफ हुआ</string>
+    <string name="settings_cache_error">कैश साफ करने में त्रुटि</string>
+    <string name="settings_download_wifi">केवल WiFi पर डाउनलोड करें</string>
+    <string name="settings_download_wifi_desc">डाउनलोड करते समय मोबाइल डेटा बचाएं</string>
+    <string name="settings_notifications">सूचनाएं</string>
+    <string name="settings_notifications_desc">अपडेट और नई सामग्री अलर्ट प्राप्त करें</string>
+    <string name="settings_info">जानकारी</string>
+    <string name="settings_version">ऐप संस्करण</string>
+    <string name="settings_rate">Google Play पर रेट करें</string>
+    <string name="settings_rate_desc">आपकी राय हमें बेहतर बनाने में मदद करती है!</string>
+    <string name="settings_report">समस्या रिपोर्ट करें</string>
+    <string name="settings_report_desc">हमें अपनी प्रतिक्रिया भेजें</string>
+    <string name="settings_no_email_app">कोई ईमेल ऐप इंस्टॉल नहीं</string>
+    <string name="settings_select_theme">थीम चुनें</string>
+    <string name="settings_select_language">भाषा चुनें</string>
+    <string name="settings_grid_view">ग्रिड व्यू</string>
+    <string name="settings_one_column">एक कॉलम</string>
+    <string name="settings_two_columns">दो कॉलम</string>
+    <string name="settings_check_update">अपडेट जांचें</string>
+    <string name="settings_check_update_desc">नया संस्करण उपलब्ध है या नहीं जांचें</string>
+    <string name="settings_up_to_date">आप अपडेट हैं!</string>
+    <string name="settings_update_error">अपडेट जांच नहीं हो सका</string>
+    <string name="settings_checking_update">अपडेट जांच रहे हैं…</string>
+
+    <string name="about_title">के बारे में</string>
+    <string name="about_back">वापस</string>
+    <string name="about_developer">डेवलपर</string>
+    <string name="about_developer_desc">मैं एक डेवलपर और डिज़ाइनर हूँ जो लगातार सीख रहा है, मुझे स्क्रीन कस्टमाइज़ेशन का शौक है। अगर आपको मेरा काम पसंद है, तो कृपया सपोर्ट करें, रेट करें और मेरे सोशल मीडिया पर फॉलो करें।</string>
+    <string name="about_more_apps">अधिक ऐप्स</string>
+    <string name="about_more_apps_title">अधिक ऐप्स</string>
+    <string name="about_more_apps_desc">अधिक ऐप्स और उपयोगी संसाधन खोजें</string>
+    <string name="about_install">इंस्टॉल</string>
+    <string name="about_privacy_policy">गोपनीयता नीति</string>
+    <string name="about_error_opening_link">लिंक खोलने में त्रुटि</string>
+
+    <string name="changelog_title">बदलाव</string>
+    <string name="changelog_accept">स्वीकार करें</string>
+    <string name="changelog_widgets">कुल %d सुंदर विजेट</string>
+    <string name="changelog_wallpapers">कुल %d सुंदर वॉलपेपर</string>
+    <string name="changelog_icons">कुल %d आइकन</string>
+    <string name="changelog_widgets_added">सुंदर विजेट जोड़े गए</string>
+    <string name="changelog_more_widgets_soon">जल्द ही और विजेट</string>
+
+    <string name="notification_channel_name">अपडेट</string>
+    <string name="notification_channel_desc">नए संस्करण और सामग्री के लिए सूचनाएं</string>
+
+    <string name="error_starting_app">एप्लिकेशन शुरू करने में त्रुटि</string>
+    <string name="security_error">सुरक्षा त्रुटि</string>
+</resources>

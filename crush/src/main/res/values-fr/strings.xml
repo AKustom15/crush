@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation inférieure -->
+    <string name="tab_dashboard">Accueil</string>
+    <string name="tab_icons">Icônes</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">Fonds</string>
+
+    <string name="search_placeholder">Rechercher…</string>
+
+    <string name="menu_changelog">Nouveautés</string>
+    <string name="menu_about">À propos</string>
+    <string name="menu_settings">Paramètres</string>
+
+    <string name="apply_icons_button">Appliquer les icônes</string>
+    <string name="icons_count_label">Icônes</string>
+    <string name="wallpapers_label">Fonds d\'écran</string>
+    <string name="icon_request_label">Demander des icônes</string>
+    <string name="icon_preview_label">Aperçu</string>
+    <string name="more_apps_label">Plus d\'apps</string>
+    <string name="about_label">À propos</string>
+    <string name="settings_label">Paramètres</string>
+    <string name="total_apps_label">apps sur votre appareil</string>
+    <string name="themed_apps_label">icônes thématiques</string>
+    <string name="missing_apps_label">icônes manquantes</string>
+    <string name="loading_icons">Chargement des icônes…</string>
+    <string name="dashboard_apply_to">Appliquer à</string>
+
+    <string name="icons_title">Icônes</string>
+    <string name="icons_all">Toutes</string>
+    <string name="icons_new">Nouvelles</string>
+    <string name="icons_total">Total : %d icônes</string>
+    <string name="icons_no_results">Aucune icône trouvée</string>
+    <string name="icons_categories">Catégories</string>
+
+    <string name="icon_request_title">Demande d\'icônes</string>
+    <string name="icon_request_free">Demande gratuite</string>
+    <string name="icon_request_premium">Demande premium</string>
+    <string name="icon_request_free_desc">Demandez jusqu\'à %d icônes gratuitement</string>
+    <string name="icon_request_premium_desc">Demandes illimitées par email</string>
+    <string name="icon_request_select_apps">Sélectionnez les apps à demander</string>
+    <string name="icon_request_selected">%d sélectionnées</string>
+    <string name="icon_request_send">Envoyer la demande</string>
+    <string name="icon_request_email_subject">Demande d\'icônes - %s</string>
+    <string name="icon_request_no_email">Aucune app email trouvée</string>
+    <string name="icon_request_limit_reached">Vous avez atteint la limite de demandes gratuites (%d icônes)</string>
+    <string name="icon_request_empty">Sélectionnez au moins une app</string>
+    <string name="icon_request_premium_email_subject">Demande premium d\'icônes - %s</string>
+
+    <string name="launcher_selection_title">Sélectionner le lanceur</string>
+    <string name="launcher_dialog_cancel">Annuler</string>
+    <string name="launcher_not_found">Lanceur introuvable</string>
+    <string name="launcher_applied">Icônes appliquées avec succès !</string>
+    <string name="launcher_apply_error">Impossible d\'appliquer les icônes</string>
+
+    <string name="btn_apply">Appliquer</string>
+    <string name="cancel">Annuler</string>
+    <string name="close">Fermer</string>
+    <string name="ok">OK</string>
+    <string name="retry">Réessayer</string>
+
+    <string name="no_widgets_found">Aucun widget trouvé</string>
+    <string name="no_wallpapers_found">Aucun fond trouvé</string>
+
+    <string name="loading_wallpapers">Chargement des fonds…</string>
+    <string name="no_wallpapers_available">Aucun fond disponible</string>
+    <string name="apply_wallpaper">Appliquer le fond</string>
+    <string name="home_screen">Écran d\'accueil</string>
+    <string name="lock_screen">Écran de verrouillage</string>
+    <string name="both_screens">Les deux écrans</string>
+    <string name="wallpaper_info">Info du fond</string>
+    <string name="download">Télécharger</string>
+    <string name="download_started">Téléchargement démarré</string>
+    <string name="download_failed">Échec du téléchargement</string>
+    <string name="downloading_title">Téléchargement de %s</string>
+    <string name="downloading_description">Téléchargement du fond d\'écran…</string>
+    <string name="wallpaper_downloaded">Fond téléchargé !</string>
+    <string name="wallpaper_applied">Fond appliqué !</string>
+    <string name="wallpaper_applied_home">Fond appliqué à l\'écran d\'accueil !</string>
+    <string name="wallpaper_applied_lock">Fond appliqué à l\'écran de verrouillage !</string>
+    <string name="wallpaper_applied_both">Fond appliqué aux deux écrans !</string>
+    <string name="wallpaper_by_author">par %s</string>
+    <string name="wallpaper_failed_load">Erreur de chargement de l\'image</string>
+    <string name="wallpaper_failed_apply">Erreur d\'application du fond</string>
+    <string name="wallpaper_info_name">Nom</string>
+    <string name="wallpaper_info_author">Auteur</string>
+    <string name="wallpaper_info_resolution">Résolution</string>
+    <string name="wallpaper_info_collection">Collection</string>
+    <string name="wifi_only_enabled">Mode WiFi uniquement activé. Connectez-vous au WiFi pour charger les fonds.</string>
+
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_dark">Sombre</string>
+    <string name="settings_theme_system">Suivre le système</string>
+    <string name="settings_accent_color">Couleur d\'accent</string>
+    <string name="settings_select_accent_color">Sélectionner la couleur d\'accent</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_app_language">Langue de l\'app</string>
+    <string name="settings_data_cache">Données et cache</string>
+    <string name="settings_clear_cache">Vider le cache d\'images</string>
+    <string name="settings_clear_cache_desc">Libérer de l\'espace de stockage</string>
+    <string name="settings_cache_cleared">Cache vidé avec succès</string>
+    <string name="settings_cache_error">Erreur lors du vidage du cache</string>
+    <string name="settings_download_wifi">Télécharger en WiFi uniquement</string>
+    <string name="settings_download_wifi_desc">Économiser les données mobiles</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_desc">Recevoir les alertes de mises à jour et nouveau contenu</string>
+    <string name="settings_info">Informations</string>
+    <string name="settings_version">Version de l\'app</string>
+    <string name="settings_rate">Noter sur Google Play</string>
+    <string name="settings_rate_desc">Votre avis nous aide à nous améliorer !</string>
+    <string name="settings_report">Signaler un problème</string>
+    <string name="settings_report_desc">Envoyez-nous vos commentaires</string>
+    <string name="settings_no_email_app">Aucune app email installée</string>
+    <string name="settings_select_theme">Sélectionner le thème</string>
+    <string name="settings_select_language">Sélectionner la langue</string>
+    <string name="settings_grid_view">Vue en grille</string>
+    <string name="settings_one_column">Une colonne</string>
+    <string name="settings_two_columns">Deux colonnes</string>
+    <string name="settings_check_update">Vérifier les mises à jour</string>
+    <string name="settings_check_update_desc">Vérifier si une nouvelle version est disponible</string>
+    <string name="settings_up_to_date">Vous êtes à jour !</string>
+    <string name="settings_update_error">Impossible de vérifier les mises à jour</string>
+    <string name="settings_checking_update">Vérification des mises à jour…</string>
+
+    <string name="about_title">À propos</string>
+    <string name="about_back">Retour</string>
+    <string name="about_developer">Développeur</string>
+    <string name="about_developer_desc">Je suis un développeur et designer en apprentissage constant, passionné par les personnalisations d\'écran. Si vous aimez mon travail, soutenez-moi, notez et suivez-moi sur mes réseaux sociaux.</string>
+    <string name="about_more_apps">Plus d\'apps</string>
+    <string name="about_more_apps_title">Plus d\'apps</string>
+    <string name="about_more_apps_desc">Découvrez plus d\'applications et de ressources utiles</string>
+    <string name="about_install">INSTALLER</string>
+    <string name="about_privacy_policy">Politique de confidentialité</string>
+    <string name="about_error_opening_link">Erreur à l\'ouverture du lien</string>
+
+    <string name="changelog_title">Nouveautés</string>
+    <string name="changelog_accept">Accepter</string>
+    <string name="changelog_widgets">Total %d beaux widgets</string>
+    <string name="changelog_wallpapers">Total %d beaux fonds</string>
+    <string name="changelog_icons">Total %d icônes</string>
+    <string name="changelog_widgets_added">Beaux widgets ajoutés</string>
+    <string name="changelog_more_widgets_soon">Bientôt plus de widgets</string>
+
+    <string name="notification_channel_name">Mises à jour</string>
+    <string name="notification_channel_desc">Notifications pour nouvelles versions et contenu</string>
+
+    <string name="error_starting_app">Erreur au démarrage de l\'application</string>
+    <string name="security_error">Erreur de sécurité</string>
+</resources>

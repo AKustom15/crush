@@ -1,55 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="crush_library_name">Crush Library</string>
+    <!-- Nombre de la librería -->
+    <string name="crush_library_name">Crush</string>
 
-    <!-- Bottom Navigation -->
+    <!-- Navegación inferior (tabs) -->
     <string name="tab_dashboard">Dashboard</string>
-    <string name="tab_widgets">Widgets</string>
-    <string name="tab_wallpaper_cloud">Wallpapers</string>
+    <string name="tab_icons">Icons</string>
+    <string name="tab_widgets">KWGT</string>
+    <string name="tab_wallpapers">KLWP</string>
+    <string name="tab_wallpaper_cloud">Wallpaper</string>
+
+    <!-- Barra superior y búsqueda -->
+    <string name="search_placeholder">Search…</string>
+
+    <!-- Menú principal -->
+    <string name="menu_changelog">Changelog</string>
+    <string name="menu_about">About</string>
+    <string name="menu_settings">Settings</string>
 
     <!-- Dashboard -->
-    <string name="apply_icons_button">Aplicar Iconos</string>
-    <string name="icons_count_label">Iconos</string>
-    <string name="wallpapers_label">Fondos</string>
-    <string name="icon_request_label">Solicitar Iconos</string>
-    <string name="icon_preview_label">Vista Previa</string>
-    <string name="more_apps_label">Más Apps</string>
-    <string name="about_label">Acerca de</string>
-    <string name="settings_label">Ajustes</string>
-    <string name="total_apps_label">apps en tu dispositivo</string>
-    <string name="themed_apps_label">con tema aplicado</string>
-    <string name="missing_apps_label">iconos faltantes</string>
-    <string name="loading_icons">Cargando iconos…</string>
+    <string name="apply_icons_button">Apply Icons</string>
+    <string name="icons_count_label">Icons</string>
+    <string name="wallpapers_label">Wallpapers</string>
+    <string name="icon_request_label">Request Icons</string>
+    <string name="icon_preview_label">Preview</string>
+    <string name="more_apps_label">More Apps</string>
+    <string name="about_label">About</string>
+    <string name="settings_label">Settings</string>
+    <string name="total_apps_label">apps on your device</string>
+    <string name="themed_apps_label">themed icons</string>
+    <string name="missing_apps_label">missing icons</string>
+    <string name="loading_icons">Loading icons…</string>
+    <string name="dashboard_apply_to">Apply to</string>
 
-    <!-- Settings -->
-    <string name="settings_title">Ajustes</string>
-    <string name="settings_theme">Tema</string>
-    <string name="settings_language">Idioma</string>
-    <string name="settings_accent_color">Color de acento</string>
-    <string name="settings_notifications">Notificaciones</string>
-    <string name="settings_clear_cache">Limpiar caché</string>
-    <string name="settings_grid_columns">Columnas</string>
+    <!-- Pantalla de iconos -->
+    <string name="icons_title">Icons</string>
+    <string name="icons_all">All</string>
+    <string name="icons_new">New</string>
+    <string name="icons_total">Total: %d icons</string>
+    <string name="icons_no_results">No icons found</string>
+    <string name="icons_categories">Categories</string>
 
-    <!-- About -->
-    <string name="about_title">Acerca de</string>
-    <string name="about_developer">Desarrollador</string>
-    <string name="about_privacy_policy">Política de privacidad</string>
-    <string name="about_more_apps">Más aplicaciones</string>
+    <!-- Solicitud de iconos -->
+    <string name="icon_request_title">Icon Request</string>
+    <string name="icon_request_free">Free Request</string>
+    <string name="icon_request_premium">Premium Request</string>
+    <string name="icon_request_free_desc">Request up to %d icons for free</string>
+    <string name="icon_request_premium_desc">Unlimited icon requests via email</string>
+    <string name="icon_request_select_apps">Select apps to request</string>
+    <string name="icon_request_selected">%d selected</string>
+    <string name="icon_request_send">Send Request</string>
+    <string name="icon_request_email_subject">Icon Request - %s</string>
+    <string name="icon_request_no_email">No email app found</string>
+    <string name="icon_request_limit_reached">You have reached the free request limit (%d icons)</string>
+    <string name="icon_request_empty">Please select at least one app</string>
+    <string name="icon_request_premium_email_subject">Premium Icon Request - %s</string>
+
+    <!-- Selección de launcher -->
+    <string name="launcher_selection_title">Select Launcher</string>
+    <string name="launcher_dialog_cancel">Cancel</string>
+    <string name="launcher_not_found">Launcher not found</string>
+    <string name="launcher_applied">Icons applied successfully!</string>
+    <string name="launcher_apply_error">Could not apply icons</string>
+
+    <!-- Tarjetas y botones generales -->
+    <string name="btn_apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="ok">OK</string>
+    <string name="retry">Retry</string>
+
+    <!-- Widgets (KWGT) -->
+    <string name="no_widgets_found">No Widgets Found</string>
+
+    <!-- Wallpapers locales (KLWP) -->
+    <string name="no_wallpapers_found">No Wallpapers Found</string>
+
+    <!-- Wallpapers en la nube -->
+    <string name="loading_wallpapers">Loading wallpapers…</string>
+    <string name="no_wallpapers_available">No wallpapers available</string>
+    <string name="apply_wallpaper">Apply Wallpaper</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="both_screens">Both Screens</string>
+    <string name="wallpaper_info">Wallpaper Info</string>
+    <string name="download">Download</string>
+    <string name="download_started">Download started</string>
+    <string name="download_failed">Download failed</string>
+    <string name="downloading_title">Downloading %s</string>
+    <string name="downloading_description">Downloading wallpaper…</string>
+    <string name="wallpaper_downloaded">Wallpaper downloaded!</string>
+    <string name="wallpaper_applied">Wallpaper applied!</string>
+    <string name="wallpaper_applied_home">Wallpaper applied to Home Screen!</string>
+    <string name="wallpaper_applied_lock">Wallpaper applied to Lock Screen!</string>
+    <string name="wallpaper_applied_both">Wallpaper applied to both screens!</string>
+    <string name="wallpaper_by_author">by %s</string>
+    <string name="wallpaper_failed_load">Failed to load image</string>
+    <string name="wallpaper_failed_apply">Failed to apply wallpaper</string>
+    <string name="wallpaper_info_name">Name</string>
+    <string name="wallpaper_info_author">Author</string>
+    <string name="wallpaper_info_resolution">Resolution</string>
+    <string name="wallpaper_info_collection">Collection</string>
+    <string name="wifi_only_enabled">WiFi only mode is enabled. Connect to WiFi to load wallpapers.</string>
+
+    <!-- Ajustes -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_system">Follow system</string>
+    <string name="settings_accent_color">Accent color</string>
+    <string name="settings_select_accent_color">Select accent color</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_app_language">App language</string>
+    <string name="settings_data_cache">Data and Cache</string>
+    <string name="settings_clear_cache">Clear image cache</string>
+    <string name="settings_clear_cache_desc">Free up storage space</string>
+    <string name="settings_cache_cleared">Cache cleared successfully</string>
+    <string name="settings_cache_error">Error clearing cache</string>
+    <string name="settings_download_wifi">Download on WiFi only</string>
+    <string name="settings_download_wifi_desc">Save mobile data when downloading</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_desc">Receive updates and new content alerts</string>
+    <string name="settings_info">Information</string>
+    <string name="settings_version">App version</string>
+    <string name="settings_rate">Rate on Google Play</string>
+    <string name="settings_rate_desc">Your opinion helps us improve!</string>
+    <string name="settings_report">Report a problem</string>
+    <string name="settings_report_desc">Send us your feedback</string>
+    <string name="settings_no_email_app">No email app installed</string>
+    <string name="settings_select_theme">Select theme</string>
+    <string name="settings_select_language">Select language</string>
+    <string name="settings_grid_view">Grid view</string>
+    <string name="settings_one_column">One column</string>
+    <string name="settings_two_columns">Two columns</string>
+    <string name="settings_check_update">Check for updates</string>
+    <string name="settings_check_update_desc">Check if there\'s a new version available</string>
+    <string name="settings_up_to_date">You\'re up to date!</string>
+    <string name="settings_update_error">Could not check for updates</string>
+    <string name="settings_checking_update">Checking for updates…</string>
+
+    <!-- Acerca de -->
+    <string name="about_title">About</string>
+    <string name="about_back">Back</string>
+    <string name="about_developer">Developer</string>
+    <string name="about_developer_desc">I am a developer and designer in constant learning, I am passionate about screen customizations. If you like my work, please support, rate and follow me on my social networks.</string>
+    <string name="about_more_apps">More Apps</string>
+    <string name="about_more_apps_title">More Apps</string>
+    <string name="about_more_apps_desc">Discover more apps and useful resources</string>
+    <string name="about_install">INSTALL</string>
+    <string name="about_privacy_policy">Privacy Policy</string>
+    <string name="about_error_opening_link">Error opening link</string>
 
     <!-- Changelog -->
-    <string name="changelog_title">Novedades</string>
-    <string name="changelog_widgets_added">Widgets añadidos</string>
-    <string name="changelog_more_widgets_soon">Más widgets próximamente</string>
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_accept">Accept</string>
+    <string name="changelog_widgets">Total %d beautiful widgets</string>
+    <string name="changelog_wallpapers">Total %d beautiful wallpapers</string>
+    <string name="changelog_icons">Total %d icons</string>
+    <string name="changelog_widgets_added">Beautiful widgets added</string>
+    <string name="changelog_more_widgets_soon">Soon there will be more widgets</string>
 
-    <!-- Launcher selection -->
-    <string name="launcher_selection_title">Seleccionar Launcher</string>
-    <string name="launcher_dialog_cancel">Cancelar</string>
+    <!-- Colores de acento -->
+    <string name="color_default">Default</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_green">Green</string>
+    <string name="color_orange">Orange</string>
+    <string name="color_red">Red</string>
+    <string name="color_teal">Teal</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_cyan">Cyan</string>
 
-    <!-- Notifications -->
-    <string name="notification_channel_name">Actualizaciones</string>
-    <string name="notification_channel_desc">Notificaciones de nuevas versiones y contenido</string>
+    <!-- Idiomas -->
+    <string name="language_spanish">Español</string>
+    <string name="language_english">English</string>
+    <string name="language_auto">Auto</string>
 
-    <!-- Errors -->
-    <string name="error_starting_app">Error al iniciar la aplicación</string>
-    <string name="security_error">Error de seguridad</string>
+    <!-- Notificaciones -->
+    <string name="notification_channel_name">Updates</string>
+    <string name="notification_channel_desc">Notifications for new versions and content</string>
+
+    <!-- Errores -->
+    <string name="error_starting_app">Error starting the application</string>
+    <string name="security_error">Security error</string>
 </resources>

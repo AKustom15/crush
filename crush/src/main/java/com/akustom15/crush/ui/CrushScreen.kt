@@ -1,5 +1,6 @@
 package com.akustom15.crush.ui
 
+import android.content.pm.PackageManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,18 +12,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import com.akustom15.crush.R
 import com.akustom15.crush.config.CrushConfig
 import com.akustom15.crush.config.CrushTab
+import com.akustom15.crush.iconpack.AppFilterParser
+import com.akustom15.crush.ui.components.AnimatedSearchTopBar
+import com.akustom15.crush.ui.components.ChangelogDialog
 import com.akustom15.crush.ui.components.CrushBottomNavigation
+import com.akustom15.crush.ui.screens.about.AboutScreen
 import com.akustom15.crush.ui.screens.dashboard.DashboardScreen
+import com.akustom15.crush.ui.screens.icons.IconGridScreen
+import com.akustom15.crush.ui.screens.settings.SettingsScreen
 import com.akustom15.crush.ui.screens.wallpapers.CloudWallpaperScreen
 import com.akustom15.crush.ui.screens.widgets.WidgetGridScreen
 import com.akustom15.crush.ui.theme.CrushTheme
+import com.akustom15.crush.utils.AssetsReader
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 
+/**
+ * Pantalla principal de la librería Crush.
+ * Integra búsqueda, menú, navegación inferior con blur, y todas las pantallas.
+ */
 @Composable
 fun CrushScreen(config: CrushConfig) {
     CrushTheme {
@@ -37,10 +51,41 @@ private fun CrushScreenContent(config: CrushConfig) {
     var selectedTab by remember(visibleTabs) {
         mutableStateOf(visibleTabs.firstOrNull() ?: CrushTab.Dashboard)
     }
+    var searchQuery by remember { mutableStateOf("") }
+    var isSearchActive by remember { mutableStateOf(false) }
 
+    // Estado del menú y diálogos
+    var showMenu by remember { mutableStateOf(false) }
+    var showChangelogDialog by remember { mutableStateOf(false) }
+    var showAboutDialog by remember { mutableStateOf(false) }
+    var showSettingsDialog by remember { mutableStateOf(false) }
+
+    // Versión de la app detectada automáticamente
+    val appVersion = remember {
+        try {
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            "v${packageInfo.versionName}"
+        } catch (e: PackageManager.NameNotFoundException) {
+            "v1.0"
+        }
+    }
+
+    // Contadores para el changelog
+    val iconCount = remember(config.packageName) {
+        try { AppFilterParser.getIconCount(context) } catch (e: Exception) { 0 }
+    }
+    val widgetCount = remember(config.packageName) {
+        try { AssetsReader.getWidgetsFromAssets(context).size } catch (e: Exception) { 0 }
+    }
+    val wallpaperCount = remember(config.packageName) {
+        try { AssetsReader.getWallpapersFromAssets(context).size } catch (e: Exception) { 0 }
+    }
+
+    // Padding inferior para el contenido (espacio para la pill de navegación)
     val navBarBottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     val bottomContentPadding = if (visibleTabs.size > 1) navBarBottom + 80.dp else navBarBottom
 
+    // Estado de Haze para blur en la pill de navegación
     val hazeState = remember { HazeState() }
 
     Box(
@@ -48,35 +93,66 @@ private fun CrushScreenContent(config: CrushConfig) {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        // Main content area
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .haze(state = hazeState)
-        ) {
-            when (selectedTab) {
-                CrushTab.Dashboard -> {
-                    DashboardScreen(
-                        config = config,
-                        bottomContentPadding = bottomContentPadding
-                    )
-                }
-                CrushTab.Widgets -> {
-                    WidgetGridScreen(
-                        config = config,
-                        bottomContentPadding = bottomContentPadding
-                    )
-                }
-                CrushTab.WallpaperCloud -> {
-                    CloudWallpaperScreen(
-                        config = config,
-                        bottomContentPadding = bottomContentPadding
-                    )
+        Column(modifier = Modifier.fillMaxSize()) {
+            // Barra superior con búsqueda y menú
+            AnimatedSearchTopBar(
+                isSearchActive = isSearchActive,
+                searchQuery = searchQuery,
+                onSearchQueryChange = { searchQuery = it },
+                onSearchActiveChange = { isSearchActive = it },
+                onMenuClick = { showMenu = true },
+                showMenuDropdown = showMenu,
+                onMenuDismiss = { showMenu = false },
+                onChangelogClick = { showChangelogDialog = true },
+                onAboutClick = { showAboutDialog = true },
+                onSettingsClick = { showSettingsDialog = true }
+            )
+
+            // Contenido principal con blur para la pill
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .haze(state = hazeState)
+            ) {
+                when (selectedTab) {
+                    CrushTab.Dashboard -> {
+                        DashboardScreen(
+                            config = config,
+                            bottomContentPadding = bottomContentPadding
+                        )
+                    }
+                    CrushTab.Icons -> {
+                        IconGridScreen(
+                            config = config,
+                            searchQuery = searchQuery,
+                            showHeader = !isSearchActive,
+                            bottomContentPadding = bottomContentPadding
+                        )
+                    }
+                    CrushTab.Widgets -> {
+                        WidgetGridScreen(
+                            config = config,
+                            bottomContentPadding = bottomContentPadding
+                        )
+                    }
+                    CrushTab.Wallpapers -> {
+                        WidgetGridScreen(
+                            config = config,
+                            bottomContentPadding = bottomContentPadding
+                        )
+                    }
+                    CrushTab.WallpaperCloud -> {
+                        CloudWallpaperScreen(
+                            config = config,
+                            bottomContentPadding = bottomContentPadding
+                        )
+                    }
                 }
             }
         }
 
-        // Bottom navigation with gradient + pill
+        // Navegación inferior flotante con gradiente + pill con blur
         if (visibleTabs.size > 1) {
             val isDark = MaterialTheme.colorScheme.background.luminance() < 0.5f
             val navbarColor = if (isDark) {
@@ -86,7 +162,7 @@ private fun CrushScreenContent(config: CrushConfig) {
             }
             val topbarHeight = 62.dp + 8.dp + navBarBottom
 
-            // Gradient behind pill
+            // Gradiente detrás de la pill
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -102,13 +178,69 @@ private fun CrushScreenContent(config: CrushConfig) {
                     )
             )
 
-            // PIL with blur
+            // Pill con blur (Haze)
             CrushBottomNavigation(
                 visibleTabs = visibleTabs,
                 selectedTab = selectedTab,
                 onTabSelected = { selectedTab = it },
                 hazeState = hazeState,
                 modifier = Modifier.align(Alignment.BottomCenter)
+            )
+        }
+    }
+
+    // Diálogo de Changelog
+    if (showChangelogDialog) {
+        ChangelogDialog(
+            changelog = config.changelog,
+            appVersion = appVersion,
+            iconCount = iconCount,
+            widgetCount = widgetCount,
+            wallpaperCount = wallpaperCount,
+            onDismiss = { showChangelogDialog = false }
+        )
+    }
+
+    // Pantalla About (diálogo a pantalla completa)
+    if (showAboutDialog) {
+        Dialog(
+            onDismissRequest = { showAboutDialog = false },
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false,
+                decorFitsSystemWindows = false
+            )
+        ) {
+            AboutScreen(
+                appIcon = config.appIcon,
+                developerLogoUrl = config.developerLogoUrl,
+                developerName = config.developerName,
+                moreAppsUrl = config.moreAppsUrl,
+                moreApps = config.moreApps,
+                privacyPolicyUrl = config.privacyPolicyUrl,
+                xIcon = config.xIcon,
+                instagramIcon = config.instagramIcon,
+                youtubeIcon = config.youtubeIcon,
+                facebookIcon = config.facebookIcon,
+                telegramIcon = config.telegramIcon,
+                onNavigateBack = { showAboutDialog = false }
+            )
+        }
+    }
+
+    // Pantalla Settings (diálogo a pantalla completa)
+    if (showSettingsDialog) {
+        Dialog(
+            onDismissRequest = { showSettingsDialog = false },
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false,
+                decorFitsSystemWindows = false
+            )
+        ) {
+            SettingsScreen(
+                packageName = config.packageName,
+                appVersion = appVersion,
+                updateJsonUrl = config.updateJsonUrl,
+                onNavigateBack = { showSettingsDialog = false }
             )
         }
     }
