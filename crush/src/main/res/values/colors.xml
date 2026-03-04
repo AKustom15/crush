@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Crush Library Default Colors - Override these in your app's colors.xml -->
+
+    <!-- Accent color (primary) -->
+    <color name="crush_accent_color">#FFBE1452</color>
+
+    <!-- Background colors -->
+    <color name="crush_background_color_dark">#FF121212</color>
+    <color name="crush_background_color_light">#FFF5F5F5</color>
+
+    <!-- Surface colors -->
+    <color name="crush_surface_color_dark">#FF1E1E1E</color>
+    <color name="crush_surface_color_light">#FFFFFFFF</color>
+
+    <!-- Card colors -->
+    <color name="crush_card_color_dark">#FF2C2C2C</color>
+    <color name="crush_card_color_light">#FFFFFFFF</color>
+
+    <!-- Bottom navigation bar colors -->
+    <color name="crush_navbar_color_dark">#FF121212</color>
+    <color name="crush_navbar_color_light">#FFF5F5F5</color>
+</resources>

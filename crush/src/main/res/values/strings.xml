@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crush_library_name">Crush Library</string>
+
+    <!-- Bottom Navigation -->
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_widgets">Widgets</string>
+    <string name="tab_wallpaper_cloud">Wallpapers</string>
+
+    <!-- Dashboard -->
+    <string name="apply_icons_button">Aplicar Iconos</string>
+    <string name="icons_count_label">Iconos</string>
+    <string name="wallpapers_label">Fondos</string>
+    <string name="icon_request_label">Solicitar Iconos</string>
+    <string name="icon_preview_label">Vista Previa</string>
+    <string name="more_apps_label">Más Apps</string>
+    <string name="about_label">Acerca de</string>
+    <string name="settings_label">Ajustes</string>
+    <string name="total_apps_label">apps en tu dispositivo</string>
+    <string name="themed_apps_label">con tema aplicado</string>
+    <string name="missing_apps_label">iconos faltantes</string>
+    <string name="loading_icons">Cargando iconos…</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_accent_color">Color de acento</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_clear_cache">Limpiar caché</string>
+    <string name="settings_grid_columns">Columnas</string>
+
+    <!-- About -->
+    <string name="about_title">Acerca de</string>
+    <string name="about_developer">Desarrollador</string>
+    <string name="about_privacy_policy">Política de privacidad</string>
+    <string name="about_more_apps">Más aplicaciones</string>
+
+    <!-- Changelog -->
+    <string name="changelog_title">Novedades</string>
+    <string name="changelog_widgets_added">Widgets añadidos</string>
+    <string name="changelog_more_widgets_soon">Más widgets próximamente</string>
+
+    <!-- Launcher selection -->
+    <string name="launcher_selection_title">Seleccionar Launcher</string>
+    <string name="launcher_dialog_cancel">Cancelar</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Actualizaciones</string>
+    <string name="notification_channel_desc">Notificaciones de nuevas versiones y contenido</string>
+
+    <!-- Errors -->
+    <string name="error_starting_app">Error al iniciar la aplicación</string>
+    <string name="security_error">Error de seguridad</string>
+</resources>
