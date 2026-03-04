@@ -10,7 +10,7 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.rs1525"
+                groupId = "com.github.AKustom15"
                 artifactId = "crush-library"
                 version = project.findProperty("VERSION_NAME")?.toString() ?: "1.0.0"
             }
