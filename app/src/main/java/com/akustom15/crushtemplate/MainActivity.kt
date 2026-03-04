@@ -14,34 +14,38 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Initialize push notifications
+        // Inicializar notificaciones push
         CrushNotificationHelper.initialize(this)
 
-        // Configure the Crush library — CHANGE THESE VALUES FOR YOUR APP
+        // Configurar la librería Crush — CAMBIA ESTOS VALORES PARA TU APP
         val crushConfig = CrushConfig(
             appName = "Crush Template",
             appSubtitle = "Beautiful Icon Pack for your device",
             appIcon = R.mipmap.ic_launcher,
             packageName = packageName,
 
-            // Tabs configuration
-            showWidgets = true,           // Show Widgets/KLWP tab
-            showWallpaperCloud = true,     // Show Cloud Wallpapers tab
-            widgetType = WidgetType.KWGT,  // KWGT or KLWP
+            // Configuración de tabs
+            showIconsTab = true,           // Mostrar tab de Iconos
+            showWidgets = true,            // Mostrar tab de Widgets/KLWP
+            showWallpapers = false,        // Mostrar tab de Wallpapers locales
+            showWallpaperCloud = true,     // Mostrar tab de Wallpapers en la nube
+            widgetType = WidgetType.KWGT,  // KWGT o KLWP
 
-            // Cloud wallpapers URL (JSON format)
+            // URL de wallpapers en la nube (formato JSON)
             cloudWallpapersUrl = "",
 
-            // appfilter XML resource for icon animation on dashboard
-            // Set to R.xml.appfilter if you have one
-            appFilterXmlRes = 0,
+            // Configuración de solicitud de iconos
+            iconRequestEmail = "your_email@example.com",
+            freeIconRequestLimit = 10,
+            enablePremiumRequest = false,
 
-            // Developer info
+            // Información del desarrollador (pantalla About)
             developerName = "AKustom15",
+            developerLogoUrl = "",
             moreAppsUrl = "https://play.google.com/store/apps/dev?id=YOUR_DEV_ID",
             privacyPolicyUrl = "",
 
-            // Update checker URL
+            // URL para verificar actualizaciones
             updateJsonUrl = "",
 
             // Changelog
@@ -52,11 +56,11 @@ class MainActivity : AppCompatActivity() {
                 )
             ),
 
-            // Splash screen text (max 3 parts)
+            // Texto del splash screen (máximo 3 partes)
             splashTextParts = listOf("Crush", "Icon", "Pack"),
             splashAnimationDurationMs = 3000L,
 
-            // Social media icons — provide your own drawables
+            // Iconos de redes sociales — proporciona tus propios drawables
             // xIcon = R.drawable.x,
             // instagramIcon = R.drawable.instagram,
             // youtubeIcon = R.drawable.youtube,
