@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -16,16 +18,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.drawable.toBitmap
 import com.akustom15.crush.R
 import com.akustom15.crush.config.CrushConfig
 import com.akustom15.crush.iconpack.AppFilterParser
@@ -33,11 +33,8 @@ import com.akustom15.crush.iconpack.FavoriteIconsManager
 import com.akustom15.crush.iconpack.IconPackManager
 import com.akustom15.crush.iconpack.LauncherInfo
 import com.akustom15.crush.model.IconItem
+import kotlinx.coroutines.launch
 
-/**
- * Icon grid screen with tab-based categories, favorites, search, and icon detail dialog.
- * Design matches Zyra/Glasswave icon preview style.
- */
 @Composable
 fun IconGridScreen(
     config: CrushConfig,
@@ -47,8 +44,8 @@ fun IconGridScreen(
     onIconSelected: ((IconItem) -> Unit)? = null
 ) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
-    // Load icons from assets
     val allIcons = remember(config.packageName) {
         try {
             AppFilterParser.parseDrawableXml(context)
@@ -57,63 +54,39 @@ fun IconGridScreen(
         }
     }
 
-    // Get unique categories
     val categories = remember(allIcons) {
         allIcons.map { it.category }.filter { it.isNotEmpty() }.distinct()
     }
 
-    // Tab state: 0=All, 1=Favorites, 2+=categories
     var selectedTabIndex by remember { mutableStateOf(0) }
+    val totalPages = 2 + categories.size
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        pageCount = { totalPages }
+    )
 
-    // Favorites state
     var favoriteIcons by remember { mutableStateOf(FavoriteIconsManager.loadFavoriteIcons(context)) }
     val favoriteIconItems = remember(allIcons, favoriteIcons) {
         allIcons.filter { favoriteIcons.contains(it.drawableName) }
     }
 
-    // Icon detail dialog state
+    var localSearchQuery by remember { mutableStateOf("") }
+
     var showIconDetail by remember { mutableStateOf(false) }
     var selectedIcon by remember { mutableStateOf<IconItem?>(null) }
-
-    // Launcher dialog state
     var showLauncherDialog by remember { mutableStateOf(false) }
     val compatibleLaunchers = remember(context) { IconPackManager.getCompatibleLaunchers(context) }
 
-    // Filter icons based on tab and search
-    val filteredIcons = remember(allIcons, searchQuery, selectedTabIndex, categories, favoriteIconItems) {
-        when {
-            selectedTabIndex == 0 && searchQuery.isBlank() -> allIcons
-            selectedTabIndex == 0 -> allIcons.filter {
-                it.formattedName.contains(searchQuery, ignoreCase = true) ||
-                    it.drawableName.contains(searchQuery, ignoreCase = true)
-            }
-            selectedTabIndex == 1 -> {
-                if (searchQuery.isBlank()) favoriteIconItems
-                else favoriteIconItems.filter {
-                    it.formattedName.contains(searchQuery, ignoreCase = true) ||
-                        it.drawableName.contains(searchQuery, ignoreCase = true)
-                }
-            }
-            else -> {
-                val catIndex = selectedTabIndex - 2
-                if (catIndex < categories.size) {
-                    val selectedCategory = categories[catIndex]
-                    allIcons.filter { icon ->
-                        icon.category == selectedCategory && (searchQuery.isBlank() ||
-                            icon.formattedName.contains(searchQuery, ignoreCase = true) ||
-                            icon.drawableName.contains(searchQuery, ignoreCase = true))
-                    }
-                } else allIcons
-            }
-        }
+    LaunchedEffect(pagerState.currentPage) {
+        selectedTabIndex = pagerState.currentPage
     }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .statusBarsPadding()
     ) {
-        // Scrollable tab row (All, Favorites, categories...)
         ScrollableTabRow(
             selectedTabIndex = selectedTabIndex,
             modifier = Modifier.fillMaxWidth(),
@@ -123,10 +96,9 @@ fun IconGridScreen(
             indicator = {},
             edgePadding = 0.dp
         ) {
-            // Tab All
             Tab(
                 selected = selectedTabIndex == 0,
-                onClick = { selectedTabIndex = 0 },
+                onClick = { coroutineScope.launch { pagerState.animateScrollToPage(0) } },
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 4.dp)
                     .clip(RoundedCornerShape(50))
@@ -138,17 +110,15 @@ fun IconGridScreen(
                     Text(
                         text = stringResource(R.string.icons_all),
                         fontWeight = if (selectedTabIndex == 0) FontWeight.Bold else FontWeight.Normal,
-                        color = if (selectedTabIndex == 0)
-                            MaterialTheme.colorScheme.onPrimary
+                        color = if (selectedTabIndex == 0) MaterialTheme.colorScheme.onPrimary
                         else MaterialTheme.colorScheme.onBackground
                     )
                 }
             )
 
-            // Tab Favorites
             Tab(
                 selected = selectedTabIndex == 1,
-                onClick = { selectedTabIndex = 1 },
+                onClick = { coroutineScope.launch { pagerState.animateScrollToPage(1) } },
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 4.dp)
                     .clip(RoundedCornerShape(50))
@@ -160,18 +130,16 @@ fun IconGridScreen(
                     Text(
                         text = stringResource(R.string.icons_favorites),
                         fontWeight = if (selectedTabIndex == 1) FontWeight.Bold else FontWeight.Normal,
-                        color = if (selectedTabIndex == 1)
-                            MaterialTheme.colorScheme.onPrimary
+                        color = if (selectedTabIndex == 1) MaterialTheme.colorScheme.onPrimary
                         else MaterialTheme.colorScheme.onBackground
                     )
                 }
             )
 
-            // Category tabs
             categories.forEachIndexed { index, category ->
                 Tab(
                     selected = selectedTabIndex == index + 2,
-                    onClick = { selectedTabIndex = index + 2 },
+                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index + 2) } },
                     modifier = Modifier
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                         .clip(RoundedCornerShape(50))
@@ -183,8 +151,7 @@ fun IconGridScreen(
                         Text(
                             text = category,
                             fontWeight = if (selectedTabIndex == index + 2) FontWeight.Bold else FontWeight.Normal,
-                            color = if (selectedTabIndex == index + 2)
-                                MaterialTheme.colorScheme.onPrimary
+                            color = if (selectedTabIndex == index + 2) MaterialTheme.colorScheme.onPrimary
                             else MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -192,53 +159,106 @@ fun IconGridScreen(
             }
         }
 
-        // Icon count
-        Text(
-            text = stringResource(R.string.icons_total, filteredIcons.size),
-            fontSize = 13.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+        OutlinedTextField(
+            value = localSearchQuery,
+            onValueChange = { localSearchQuery = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 6.dp),
+            placeholder = { Text(stringResource(R.string.search_placeholder)) },
+            singleLine = true,
+            shape = RoundedCornerShape(50),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = Color.Transparent
+            )
         )
 
-        // Icon grid
-        if (filteredIcons.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(bottom = bottomContentPadding),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = stringResource(R.string.icons_no_results),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontSize = 16.sp
-                )
-            }
-        } else {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(4),
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(
-                    start = 8.dp, end = 8.dp,
-                    top = 4.dp, bottom = bottomContentPadding + 16.dp
-                ),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(filteredIcons, key = { it.drawableName }) { icon ->
-                    IconGridItem(
-                        icon = icon,
-                        onClick = {
-                            selectedIcon = icon
-                            showIconDetail = true
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 4.dp)
+        ) { page ->
+            val activeQuery = localSearchQuery.ifBlank { searchQuery }
+            val iconsForPage: List<IconItem> = when (page) {
+                0 -> {
+                    if (activeQuery.isBlank()) allIcons
+                    else allIcons.filter {
+                        it.formattedName.contains(activeQuery, ignoreCase = true) ||
+                            it.drawableName.contains(activeQuery, ignoreCase = true)
+                    }
+                }
+                1 -> {
+                    if (activeQuery.isBlank()) favoriteIconItems
+                    else favoriteIconItems.filter {
+                        it.formattedName.contains(activeQuery, ignoreCase = true) ||
+                            it.drawableName.contains(activeQuery, ignoreCase = true)
+                    }
+                }
+                else -> {
+                    val catIndex = page - 2
+                    if (catIndex < categories.size) {
+                        val cat = categories[catIndex]
+                        val base = allIcons.filter { it.category == cat }
+                        if (activeQuery.isBlank()) base
+                        else base.filter {
+                            it.formattedName.contains(activeQuery, ignoreCase = true) ||
+                                it.drawableName.contains(activeQuery, ignoreCase = true)
                         }
-                    )
+                    } else emptyList()
+                }
+            }
+
+            Column(modifier = Modifier.fillMaxSize()) {
+                Text(
+                    text = stringResource(R.string.icons_total, iconsForPage.size),
+                    fontSize = 13.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                )
+
+                if (iconsForPage.isEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(bottom = bottomContentPadding),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = stringResource(R.string.icons_no_results),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            fontSize = 16.sp
+                        )
+                    }
+                } else {
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(4),
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(
+                            start = 8.dp, end = 8.dp,
+                            top = 4.dp, bottom = bottomContentPadding + 16.dp
+                        ),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(iconsForPage) { icon ->
+                            IconGridItem(
+                                icon = icon,
+                                onClick = {
+                                    selectedIcon = icon
+                                    showIconDetail = true
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }
     }
 
-    // Icon detail dialog
     if (showIconDetail && selectedIcon != null) {
         IconDetailDialog(
             iconItem = selectedIcon!!,
@@ -259,7 +279,6 @@ fun IconGridScreen(
         )
     }
 
-    // Launcher selection dialog
     if (showLauncherDialog) {
         AlertDialog(
             onDismissRequest = { showLauncherDialog = false },
@@ -301,18 +320,15 @@ fun IconGridScreen(
     }
 }
 
-/** Icon grid item with circular background like Zyra/Glasswave */
 @Composable
 fun IconGridItem(icon: IconItem, onClick: () -> Unit) {
-    val context = LocalContext.current
-
     Box(
         modifier = Modifier
             .padding(4.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .clickable(onClick = onClick)
-            .size(100.dp),
+            .size(120.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -320,44 +336,28 @@ fun IconGridItem(icon: IconItem, onClick: () -> Unit) {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(4.dp)
         ) {
-            // Icon with circular background
             Box(
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(70.dp)
                     .background(MaterialTheme.colorScheme.surface, CircleShape)
                     .padding(4.dp),
                 contentAlignment = Alignment.Center
             ) {
-                val drawable = remember(icon.resourceId) {
-                    try {
-                        context.getDrawable(icon.resourceId)
-                    } catch (e: Exception) {
-                        null
-                    }
-                }
-
-                if (drawable != null) {
-                    val bitmap = remember(drawable) {
-                        drawable.toBitmap(width = 128, height = 128)
-                    }
-                    Image(
-                        bitmap = bitmap.asImageBitmap(),
-                        contentDescription = icon.formattedName,
-                        modifier = Modifier.size(52.dp),
-                        contentScale = ContentScale.Fit
-                    )
-                }
+                Image(
+                    painter = painterResource(id = icon.resourceId),
+                    contentDescription = icon.formattedName,
+                    modifier = Modifier.size(68.dp)
+                )
             }
 
-            // Icon name
             Text(
                 text = icon.formattedName,
-                fontSize = 10.sp,
+                fontSize = 13.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.padding(top = 4.dp)
+                modifier = Modifier.padding(top = 6.dp)
             )
         }
     }

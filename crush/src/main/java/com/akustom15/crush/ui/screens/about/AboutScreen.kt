@@ -256,6 +256,120 @@ fun AboutScreen(
                         }
                     }
 
+                    // FAQ Section - como Zyra
+                    HorizontalDivider(
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
+                        modifier = Modifier.padding(vertical = 16.dp)
+                    )
+
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_faq_title),
+                        baseSizeSp = 22f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_how_to_apply_title),
+                        baseSizeSp = 16f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_apply_step1),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_apply_step2),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_apply_step3),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_apply_step4),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_how_to_request_title),
+                        baseSizeSp = 16f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_request_step1),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_request_step2),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_request_step3),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_request_step4),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_how_many_title),
+                        baseSizeSp = 16f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    LimitedFontScaleText(
+                        text = stringResource(R.string.about_how_many_desc),
+                        baseSizeSp = 14f,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
                     // Sección de más apps con tarjetas horizontales
                     if (moreApps.isNotEmpty()) {
                         Spacer(modifier = Modifier.height(16.dp))
@@ -263,7 +377,7 @@ fun AboutScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
                             )
                         ) {
                             Column(modifier = Modifier.padding(vertical = 16.dp)) {
@@ -344,7 +458,7 @@ private fun MoreAppCard(app: MoreApp, onClick: () -> Unit) {
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
     ) {
         Column(modifier = Modifier.padding(14.dp)) {

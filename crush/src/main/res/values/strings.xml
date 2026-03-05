@@ -55,11 +55,15 @@
     <string name="icon_request_limit_reached">You have reached the free request limit (%d icons)</string>
     <string name="icon_request_empty">Please select at least one app</string>
     <string name="icon_request_premium_email_subject">Premium Icon Request - %s</string>
+    <string name="icon_request_free_label">free requests</string>
+    <string name="icon_request_available">Available</string>
+    <string name="icon_request_selected_label">Selected</string>
 
     <!-- Selección de launcher -->
     <string name="launcher_selection_title">Select Launcher</string>
     <string name="launcher_dialog_cancel">Cancel</string>
     <string name="launcher_not_found">Launcher not found</string>
+    <string name="launcher_applying">Applying to %s…</string>
     <string name="launcher_applied">Icons applied successfully!</string>
     <string name="launcher_apply_error">Could not apply icons</string>
 
@@ -152,6 +156,21 @@
     <string name="about_install">INSTALL</string>
     <string name="about_privacy_policy">Privacy Policy</string>
     <string name="about_error_opening_link">Error opening link</string>
+    <string name="about_faq_title">FAQ</string>
+    <string name="about_how_to_apply_title">How to apply icons?</string>
+    <string name="about_apply_step1">1. Open the app and tap \"Apply Icons\".</string>
+    <string name="about_apply_step2">2. Select your launcher from the list.</string>
+    <string name="about_apply_step3">3. If your launcher is not listed, go to your launcher settings and look for the icon pack option.</string>
+    <string name="about_apply_step4">4. Some launchers require a restart to apply the icons correctly.</string>
+    <string name="about_how_to_request_title">How to request icons?</string>
+    <string name="about_request_step1">1. Go to the icon request section from the dashboard.</string>
+    <string name="about_request_step2">2. Select the apps you want icons for.</string>
+    <string name="about_request_step3">3. Tap \"Send Request\" to send the request via email.</string>
+    <string name="about_request_step4">4. The developer will review and include the icons in future updates.</string>
+    <string name="about_how_many_title">How many icons can I request?</string>
+    <string name="about_how_many_desc">You can request icons for free with a limit per request. Premium requests allow unlimited icons.</string>
+    <string name="icon_request_sent">Request sent successfully!</string>
+    <string name="icon_request_already_sent">Already requested</string>
 
     <!-- Changelog -->
     <string name="changelog_title">Changelog</string>

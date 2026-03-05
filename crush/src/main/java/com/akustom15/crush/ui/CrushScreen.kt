@@ -19,7 +19,6 @@ import com.akustom15.crush.R
 import com.akustom15.crush.config.CrushConfig
 import com.akustom15.crush.config.CrushTab
 import com.akustom15.crush.iconpack.AppFilterParser
-import com.akustom15.crush.ui.components.AnimatedSearchTopBar
 import com.akustom15.crush.ui.components.ChangelogDialog
 import com.akustom15.crush.ui.components.CrushBottomNavigation
 import com.akustom15.crush.ui.screens.about.AboutScreen
@@ -54,11 +53,7 @@ private fun CrushScreenContent(config: CrushConfig) {
     var selectedTab by remember(visibleTabs) {
         mutableStateOf(visibleTabs.firstOrNull() ?: CrushTab.Dashboard)
     }
-    var searchQuery by remember { mutableStateOf("") }
-    var isSearchActive by remember { mutableStateOf(false) }
-
-    // Estado del menú y diálogos
-    var showMenu by remember { mutableStateOf(false) }
+    // Estado de diálogos
     var showChangelogDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
     var showSettingsDialog by remember { mutableStateOf(false) }
@@ -98,20 +93,6 @@ private fun CrushScreenContent(config: CrushConfig) {
             .background(MaterialTheme.colorScheme.background)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            // Barra superior con búsqueda y menú
-            AnimatedSearchTopBar(
-                isSearchActive = isSearchActive,
-                searchQuery = searchQuery,
-                onSearchQueryChange = { searchQuery = it },
-                onSearchActiveChange = { isSearchActive = it },
-                onMenuClick = { showMenu = true },
-                showMenuDropdown = showMenu,
-                onMenuDismiss = { showMenu = false },
-                onChangelogClick = { showChangelogDialog = true },
-                onAboutClick = { showAboutDialog = true },
-                onSettingsClick = { showSettingsDialog = true }
-            )
-
             // Contenido principal con blur para la pill
             Box(
                 modifier = Modifier
@@ -138,8 +119,8 @@ private fun CrushScreenContent(config: CrushConfig) {
                     CrushTab.Icons -> {
                         IconGridScreen(
                             config = config,
-                            searchQuery = searchQuery,
-                            showHeader = !isSearchActive,
+                            searchQuery = "",
+                            showHeader = true,
                             bottomContentPadding = bottomContentPadding
                         )
                     }
