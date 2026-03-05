@@ -159,6 +159,17 @@
     <string name="changelog_widgets_added">Hermosos widgets añadidos</string>
     <string name="changelog_more_widgets_soon">Pronto habrá más widgets</string>
 
+    <!-- Colores de acento -->
+    <string name="color_default">Predeterminado</string>
+    <string name="color_blue">Azul</string>
+    <string name="color_purple">Púrpura</string>
+    <string name="color_green">Verde</string>
+    <string name="color_orange">Naranja</string>
+    <string name="color_red">Rojo</string>
+    <string name="color_teal">Turquesa</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_cyan">Cian</string>
+
     <!-- Notificaciones -->
     <string name="notification_channel_name">Actualizaciones</string>
     <string name="notification_channel_desc">Notificaciones de nuevas versiones y contenido</string>

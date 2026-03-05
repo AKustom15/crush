@@ -25,19 +25,19 @@ enum class AppLanguage(val code: String, val displayName: String) {
     HINDI("hi", "हिन्दी"),
     INDONESIAN("in", "Bahasa Indonesia"),
     CHINESE("zh-CN", "简体中文"),
-    SYSTEM("system", "Automático / Auto")
+    SYSTEM("system", "Auto (System)")
 }
 
 enum class AccentColor(val colorValue: Long, val displayName: String) {
-    DEFAULT(0xFFBE1452, "Predeterminado / Default"),
-    BLUE(0xFF2196F3, "Azul"),
-    PURPLE(0xFF9C27B0, "Púrpura"),
-    GREEN(0xFF4CAF50, "Verde"),
-    ORANGE(0xFFFF9800, "Naranja"),
-    RED(0xFFF44336, "Rojo"),
-    TEAL(0xFF009688, "Turquesa"),
-    PINK(0xFFE91E63, "Rosa"),
-    CYAN(0xFF00BCD4, "Cian")
+    DEFAULT(0xFFBE1452, "Default"),
+    BLUE(0xFF2196F3, "Blue"),
+    PURPLE(0xFF9C27B0, "Purple"),
+    GREEN(0xFF4CAF50, "Green"),
+    ORANGE(0xFFFF9800, "Orange"),
+    RED(0xFFF44336, "Red"),
+    TEAL(0xFF009688, "Teal"),
+    PINK(0xFFE91E63, "Pink"),
+    CYAN(0xFF00BCD4, "Cyan")
 }
 
 enum class GridColumns(val count: Int) {

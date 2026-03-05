@@ -132,10 +132,21 @@ fun SettingsScreen(
                     } else {
                         Color(accentColor.colorValue)
                     }
+                    val accentColorName = when (accentColor) {
+                        AccentColor.DEFAULT -> stringResource(R.string.color_default)
+                        AccentColor.BLUE -> stringResource(R.string.color_blue)
+                        AccentColor.PURPLE -> stringResource(R.string.color_purple)
+                        AccentColor.GREEN -> stringResource(R.string.color_green)
+                        AccentColor.ORANGE -> stringResource(R.string.color_orange)
+                        AccentColor.RED -> stringResource(R.string.color_red)
+                        AccentColor.TEAL -> stringResource(R.string.color_teal)
+                        AccentColor.PINK -> stringResource(R.string.color_pink)
+                        AccentColor.CYAN -> stringResource(R.string.color_cyan)
+                    }
                     SettingsItemWithColor(
                         icon = Icons.Default.Palette,
                         title = stringResource(R.string.settings_accent_color),
-                        subtitle = accentColor.displayName,
+                        subtitle = accentColorName,
                         color = displayColor,
                         onClick = { showAccentColorDialog = true }
                     )

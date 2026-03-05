@@ -26,13 +26,13 @@ class MainActivity : AppCompatActivity() {
 
             // Configuración de tabs
             showIconsTab = true,           // Mostrar tab de Iconos
-            showWidgets = true,            // Mostrar tab de Widgets/KLWP
+            showWidgets = false,           // No hay archivos KWGT/KLWP en assets. Activar cuando agregues widgets.
             showWallpapers = false,        // Mostrar tab de Wallpapers locales
             showWallpaperCloud = true,     // Mostrar tab de Wallpapers en la nube
             widgetType = WidgetType.KWGT,  // KWGT o KLWP
 
             // URL de wallpapers en la nube (formato JSON)
-            cloudWallpapersUrl = "",
+            cloudWallpapersUrl = "https://raw.githubusercontent.com/rs1525/zyra_wall/refs/heads/main/wallpaper_zyra.json",
 
             // Configuración de solicitud de iconos
             iconRequestEmail = "your_email@example.com",
