@@ -2,6 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Required for detecting installed launchers -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,19 +33,108 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Icon pack intent filters -->
+            <!-- Nova Launcher -->
             <intent-filter>
-                <action android:name="com.novalauncher.THEME" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.teslacoilsw.launcher.THEME" />
+            </intent-filter>
+
+            <!-- Apex Launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.anddoes.launcher.THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Action Launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.actionlauncher.applytheme" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.adw.launcher.icons.ACTION_PICK_ICON" />
+                <action android:name="com.actionlauncher.THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Smart Launcher / ADW -->
+            <intent-filter>
+                <action android:name="org.adw.launcher.THEMES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Microsoft Launcher -->
+            <intent-filter>
+                <action android:name="com.microsoft.launcher.action.APPLY_ICON_THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Lawnchair Launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ch.deletescape.lawnchair.THEME" />
+            </intent-filter>
+
+            <!-- OnePlus Launcher -->
+            <intent-filter>
+                <action android:name="net.oneplus.launcher.icons.ACTION_PICK_ICON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- GO Launcher -->
+            <intent-filter>
+                <action android:name="com.gau.go.launcherex.theme" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- POCO / MIUI Launcher -->
+            <intent-filter>
+                <action android:name="com.miui.home.launcher.THEME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.teslacoilsw.launcher.APPLY_ICON_THEME" />
+                <action android:name="com.mi.android.globallauncher.THEME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+            <!-- Niagara Launcher -->
+            <intent-filter>
+                <action android:name="bitpit.launcher.THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- ADW.Launcher One -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="org.adwfreak.launcher.THEME" />
+            </intent-filter>
+
+            <!-- TSF Shell -->
+            <intent-filter>
+                <action android:name="com.tsf.shell.themes" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- Google Now Launcher -->
+            <intent-filter>
+                <action android:name="com.google.android.launcher.icons.ACTION_PICK_ICON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- LG Home -->
+            <intent-filter>
+                <action android:name="com.lge.launcher2.THEME" />
+                <action android:name="com.lge.launcher3.THEME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- MIUI (Xiaomi) -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.launcher3.THEMES" />
+            </intent-filter>
+
         </activity>
 
         <!-- Main Activity -->

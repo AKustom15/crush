@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appmap>
+    <!-- res/xml/appmap.xml - Maps icon names for certain launchers -->
+
+    <item class="Phone" name="Phone" drawable="icon_phone" />
+    <item class="Messages" name="Messages" drawable="icon_messages" />
+    <item class="Settings" name="Settings" drawable="icon_settings" />
+    <item class="Camera" name="Camera" drawable="icon_camera" />
+    <item class="Calendar" name="Calendar" drawable="icon_calendar" />
+    <item class="Clock" name="Clock" drawable="icon_clock" />
+    <item class="Calculator" name="Calculator" drawable="icon_calculator" />
+    <item class="Gallery" name="Gallery" drawable="icon_gallery" />
+    <item class="Photos" name="Photos" drawable="icon_gallery" />
+    <item class="Chrome" name="Chrome" drawable="icon_chrome" />
+    <item class="Gmail" name="Gmail" drawable="icon_gmail" />
+    <item class="Maps" name="Maps" drawable="icon_maps" />
+    <item class="YouTube" name="YouTube" drawable="icon_youtube" />
+    <item class="Instagram" name="Instagram" drawable="icon_instagram" />
+    <item class="WhatsApp" name="WhatsApp" drawable="icon_whatsapp" />
+    <item class="Facebook" name="Facebook" drawable="icon_facebook" />
+    <item class="Twitter" name="Twitter" drawable="icon_twitter" />
+    <item class="X" name="X" drawable="icon_twitter" />
+    <item class="Telegram" name="Telegram" drawable="icon_telegram" />
+    <item class="Spotify" name="Spotify" drawable="icon_spotify" />
+
+</appmap>

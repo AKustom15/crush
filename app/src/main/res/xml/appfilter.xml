@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- res/xml/appfilter.xml - Read by IconPackManager for themed app counts -->
+    <!-- and by launchers directly for icon application.                       -->
+
+    <!-- System Apps -->
+    <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="icon_phone" />
+    <item component="ComponentInfo{com.android.dialer/com.android.dialer.DialtactsActivity}" drawable="icon_phone" />
+    <item component="ComponentInfo{com.samsung.android.dialer/com.samsung.android.dialer.DialtactsActivity}" drawable="icon_phone" />
+
+    <item component="ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity}" drawable="icon_messages" />
+    <item component="ComponentInfo{com.samsung.android.messaging/com.samsung.android.messaging.ui.view.main.MainActivityFrame}" drawable="icon_messages" />
+
+    <item component="ComponentInfo{com.android.settings/com.android.settings.Settings}" drawable="icon_settings" />
+    <item component="ComponentInfo{com.android.settings/com.android.settings.homepage.SettingsHomepageActivity}" drawable="icon_settings" />
+
+    <item component="ComponentInfo{com.sec.android.app.camera/com.sec.android.app.camera.Camera}" drawable="icon_camera" />
+    <item component="ComponentInfo{com.google.android.GoogleCamera/com.android.camera.CameraLauncher}" drawable="icon_camera" />
+
+    <item component="ComponentInfo{com.google.android.calendar/com.android.calendar.AllInOneActivity}" drawable="icon_calendar" />
+    <item component="ComponentInfo{com.samsung.android.calendar/com.android.calendar.AllInOneActivity}" drawable="icon_calendar" />
+
+    <item component="ComponentInfo{com.google.android.deskclock/com.android.deskclock.DeskClock}" drawable="icon_clock" />
+    <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.ClockPackage}" drawable="icon_clock" />
+
+    <item component="ComponentInfo{com.google.android.calculator/com.android.calculator2.Calculator}" drawable="icon_calculator" />
+
+    <item component="ComponentInfo{com.google.android.apps.photos/com.google.android.apps.photos.home.HomeActivity}" drawable="icon_gallery" />
+    <item component="ComponentInfo{com.sec.android.gallery3d/com.samsung.android.gallery.app.activity.GalleryActivity}" drawable="icon_gallery" />
+
+    <!-- Google Apps -->
+    <item component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}" drawable="icon_chrome" />
+    <item component="ComponentInfo{com.google.android.gm/com.google.android.gm.ConversationListActivityGmail}" drawable="icon_gmail" />
+    <item component="ComponentInfo{com.google.android.apps.maps/com.google.android.maps.MapsActivity}" drawable="icon_maps" />
+    <item component="ComponentInfo{com.google.android.youtube/com.google.android.youtube.HomeActivity}" drawable="icon_youtube" />
+
+    <!-- Social Media -->
+    <item component="ComponentInfo{com.instagram.android/com.instagram.mainactivity.InstagramMainActivity}" drawable="icon_instagram" />
+    <item component="ComponentInfo{com.instagram.android/com.instagram.mainactivity.MainActivity}" drawable="icon_instagram" />
+    <item component="ComponentInfo{com.whatsapp/com.whatsapp.Main}" drawable="icon_whatsapp" />
+    <item component="ComponentInfo{com.spotify.music/com.spotify.music.SpotifyMainActivity}" drawable="icon_spotify" />
+    <item component="ComponentInfo{com.twitter.android/com.twitter.android.StartActivity}" drawable="icon_twitter" />
+    <item component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity}" drawable="icon_facebook" />
+    <item component="ComponentInfo{org.telegram.messenger/org.telegram.ui.LaunchActivity}" drawable="icon_telegram" />
+
+</resources>

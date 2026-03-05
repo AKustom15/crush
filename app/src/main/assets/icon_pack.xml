@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- ============================================================ -->
-    <!-- CRUSH TEMPLATE - drawable.xml (assets)                       -->
-    <!-- Lists all available icons organized by category.             -->
-    <!-- The library reads this to populate the Icons tab.            -->
-    <!-- Replace with your own icons and categories.                  -->
+    <!-- CRUSH TEMPLATE - icon_pack.xml                               -->
+    <!-- Icon pack config for Smart Launcher and similar.             -->
+    <!-- Replace with your own icons.                                 -->
     <!-- ============================================================ -->
 
-    <category title="System" />
     <item drawable="icon_phone" />
     <item drawable="icon_messages" />
     <item drawable="icon_settings" />
@@ -16,14 +14,10 @@
     <item drawable="icon_clock" />
     <item drawable="icon_calculator" />
     <item drawable="icon_gallery" />
-
-    <category title="Google" />
     <item drawable="icon_chrome" />
     <item drawable="icon_gmail" />
     <item drawable="icon_maps" />
     <item drawable="icon_youtube" />
-
-    <category title="Social" />
     <item drawable="icon_instagram" />
     <item drawable="icon_whatsapp" />
     <item drawable="icon_facebook" />

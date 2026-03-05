@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IconPack>
+    <!-- res/xml/iconpack.xml - Icon pack definition for KLWP/KWGT -->
+
+    <info name="Crush Template" author="Developer" website="" version="1.0" />
+
+    <category name="All" />
+    <category name="System" />
+    <category name="Google" />
+    <category name="Social" />
+
+    <icon name="Phone" drawable="icon_phone" category="System" />
+    <icon name="Messages" drawable="icon_messages" category="System" />
+    <icon name="Settings" drawable="icon_settings" category="System" />
+    <icon name="Camera" drawable="icon_camera" category="System" />
+    <icon name="Calendar" drawable="icon_calendar" category="System" />
+    <icon name="Clock" drawable="icon_clock" category="System" />
+    <icon name="Calculator" drawable="icon_calculator" category="System" />
+    <icon name="Gallery" drawable="icon_gallery" category="System" />
+    <icon name="Chrome" drawable="icon_chrome" category="Google" />
+    <icon name="Gmail" drawable="icon_gmail" category="Google" />
+    <icon name="Maps" drawable="icon_maps" category="Google" />
+    <icon name="YouTube" drawable="icon_youtube" category="Google,Social" />
+    <icon name="Instagram" drawable="icon_instagram" category="Social" />
+    <icon name="WhatsApp" drawable="icon_whatsapp" category="Social" />
+    <icon name="Facebook" drawable="icon_facebook" category="Social" />
+    <icon name="X (Twitter)" drawable="icon_twitter" category="Social" />
+    <icon name="Telegram" drawable="icon_telegram" category="Social" />
+    <icon name="Spotify" drawable="icon_spotify" category="Social" />
+
+</IconPack>

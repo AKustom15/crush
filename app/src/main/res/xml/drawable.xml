@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <!-- ============================================================ -->
-    <!-- CRUSH TEMPLATE - drawable.xml (assets)                       -->
-    <!-- Lists all available icons organized by category.             -->
-    <!-- The library reads this to populate the Icons tab.            -->
-    <!-- Replace with your own icons and categories.                  -->
-    <!-- ============================================================ -->
+    <!-- res/xml/drawable.xml - Read by IconPackManager for total icon count -->
 
     <category title="System" />
     <item drawable="icon_phone" />

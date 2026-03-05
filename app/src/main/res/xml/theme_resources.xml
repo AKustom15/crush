@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- res/xml/theme_resources.xml - Theme resources for launchers -->
+
+    <version>1</version>
+    <packageName>crushtemplate</packageName>
+    <themeName>@string/app_name</themeName>
+    <themeInfo>Crush Template Icon Pack</themeInfo>
+
+    <item name="com.android.settings" component="ComponentInfo{com.android.settings/com.android.settings.Settings}" drawable="icon_settings" />
+    <item name="com.google.android.dialer" component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="icon_phone" />
+    <item name="com.google.android.apps.messaging" component="ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.ui.ConversationListActivity}" drawable="icon_messages" />
+    <item name="com.android.chrome" component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}" drawable="icon_chrome" />
+    <item name="com.google.android.gm" component="ComponentInfo{com.google.android.gm/com.google.android.gm.ConversationListActivityGmail}" drawable="icon_gmail" />
+    <item name="com.google.android.apps.maps" component="ComponentInfo{com.google.android.apps.maps/com.google.android.maps.MapsActivity}" drawable="icon_maps" />
+    <item name="com.google.android.youtube" component="ComponentInfo{com.google.android.youtube/com.google.android.youtube.HomeActivity}" drawable="icon_youtube" />
+    <item name="com.instagram.android" component="ComponentInfo{com.instagram.android/com.instagram.mainactivity.InstagramMainActivity}" drawable="icon_instagram" />
+    <item name="com.whatsapp" component="ComponentInfo{com.whatsapp/com.whatsapp.Main}" drawable="icon_whatsapp" />
+    <item name="com.spotify.music" component="ComponentInfo{com.spotify.music/com.spotify.music.SpotifyMainActivity}" drawable="icon_spotify" />
+    <item name="com.twitter.android" component="ComponentInfo{com.twitter.android/com.twitter.android.StartActivity}" drawable="icon_twitter" />
+    <item name="com.facebook.katana" component="ComponentInfo{com.facebook.katana/com.facebook.katana.LoginActivity}" drawable="icon_facebook" />
+    <item name="org.telegram.messenger" component="ComponentInfo{org.telegram.messenger/org.telegram.ui.LaunchActivity}" drawable="icon_telegram" />
+
+</resources>
