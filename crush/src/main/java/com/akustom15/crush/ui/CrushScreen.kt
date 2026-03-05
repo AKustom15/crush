@@ -25,6 +25,7 @@ import com.akustom15.crush.ui.components.CrushBottomNavigation
 import com.akustom15.crush.ui.screens.about.AboutScreen
 import com.akustom15.crush.ui.screens.dashboard.DashboardScreen
 import com.akustom15.crush.ui.screens.icons.IconGridScreen
+import com.akustom15.crush.ui.screens.request.IconRequestScreen
 import com.akustom15.crush.ui.screens.settings.SettingsScreen
 import com.akustom15.crush.ui.screens.wallpapers.CloudWallpaperScreen
 import com.akustom15.crush.ui.screens.widgets.WidgetGridScreen
@@ -40,7 +41,9 @@ import dev.chrisbanes.haze.haze
 @Composable
 fun CrushScreen(config: CrushConfig) {
     CrushTheme {
-        CrushScreenContent(config)
+        LocalizedContent {
+            CrushScreenContent(config)
+        }
     }
 }
 
@@ -59,6 +62,7 @@ private fun CrushScreenContent(config: CrushConfig) {
     var showChangelogDialog by remember { mutableStateOf(false) }
     var showAboutDialog by remember { mutableStateOf(false) }
     var showSettingsDialog by remember { mutableStateOf(false) }
+    var showIconRequestDialog by remember { mutableStateOf(false) }
 
     // Versión de la app detectada automáticamente
     val appVersion = remember {
@@ -119,7 +123,16 @@ private fun CrushScreenContent(config: CrushConfig) {
                     CrushTab.Dashboard -> {
                         DashboardScreen(
                             config = config,
-                            bottomContentPadding = bottomContentPadding
+                            bottomContentPadding = bottomContentPadding,
+                            onAboutClick = { showAboutDialog = true },
+                            onSettingsClick = { showSettingsDialog = true },
+                            onWallpapersClick = {
+                                val wallpaperTab = visibleTabs.find {
+                                    it == CrushTab.WallpaperCloud || it == CrushTab.Wallpapers
+                                }
+                                wallpaperTab?.let { selectedTab = it }
+                            },
+                            onIconRequestClick = { showIconRequestDialog = true }
                         )
                     }
                     CrushTab.Icons -> {
@@ -137,7 +150,7 @@ private fun CrushScreenContent(config: CrushConfig) {
                         )
                     }
                     CrushTab.Wallpapers -> {
-                        WidgetGridScreen(
+                        CloudWallpaperScreen(
                             config = config,
                             bottomContentPadding = bottomContentPadding
                         )
@@ -223,6 +236,22 @@ private fun CrushScreenContent(config: CrushConfig) {
                 facebookIcon = config.facebookIcon,
                 telegramIcon = config.telegramIcon,
                 onNavigateBack = { showAboutDialog = false }
+            )
+        }
+    }
+
+    // Pantalla Icon Request (diálogo a pantalla completa)
+    if (showIconRequestDialog && config.iconRequestEmail.isNotEmpty()) {
+        Dialog(
+            onDismissRequest = { showIconRequestDialog = false },
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false,
+                decorFitsSystemWindows = false
+            )
+        ) {
+            IconRequestScreen(
+                config = config,
+                onNavigateBack = { showIconRequestDialog = false }
             )
         }
     }

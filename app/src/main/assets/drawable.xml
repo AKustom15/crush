@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- List all drawable icon names here. Replace with your own. -->
+    <item drawable="icon_phone" />
+    <item drawable="icon_messages" />
+    <item drawable="icon_chrome" />
+    <item drawable="icon_gmail" />
+    <item drawable="icon_maps" />
+</resources>

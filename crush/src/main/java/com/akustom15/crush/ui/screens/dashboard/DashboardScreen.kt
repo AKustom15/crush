@@ -1,6 +1,7 @@
 package com.akustom15.crush.ui.screens.dashboard
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,14 +27,23 @@ import com.akustom15.crush.config.CrushConfig
 import com.akustom15.crush.iconpack.AppFilterParser
 import com.akustom15.crush.iconpack.IconPackManager
 import com.akustom15.crush.iconpack.IconRequestHelper
+import com.akustom15.crush.iconpack.LauncherInfo
 import com.akustom15.crush.ui.components.RotatingIconAnimation
 
 @Composable
 fun DashboardScreen(
     config: CrushConfig,
-    bottomContentPadding: Dp = 0.dp
+    bottomContentPadding: Dp = 0.dp,
+    onAboutClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {},
+    onWallpapersClick: () -> Unit = {},
+    onIconRequestClick: () -> Unit = {}
 ) {
     val context = LocalContext.current
+
+    // Estado para el diálogo de selección de launcher
+    var showLauncherDialog by remember { mutableStateOf(false) }
+    val compatibleLaunchers = remember(context) { IconPackManager.getCompatibleLaunchers(context) }
 
     // Cargar nombres de iconos desde assets/appfilter.xml
     val iconResourceNames = remember(context) {
@@ -133,7 +143,12 @@ fun DashboardScreen(
                         )
                         .semantics { role = Role.Button }
                         .clickable {
-                            IconPackManager.showLauncherSelector(context)
+                            val launchers = compatibleLaunchers
+                            when {
+                                launchers.size == 1 -> IconPackManager.applyIconPack(context, launchers.first())
+                                launchers.size > 1 -> showLauncherDialog = true
+                                else -> Toast.makeText(context, context.getString(R.string.launcher_not_found), Toast.LENGTH_SHORT).show()
+                            }
                         }
                         .padding(horizontal = 20.dp, vertical = 14.dp),
                     contentAlignment = Alignment.Center
@@ -192,7 +207,8 @@ fun DashboardScreen(
 
                     // Icon request card with progress
                     DashboardCard(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = onIconRequestClick
                     ) {
                         Column(
                             modifier = Modifier
@@ -258,7 +274,8 @@ fun DashboardScreen(
                 ) {
                     // Wallpapers card
                     DashboardCard(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = onWallpapersClick
                     ) {
                         Column(
                             modifier = Modifier
@@ -276,7 +293,8 @@ fun DashboardScreen(
 
                     // About card
                     DashboardCard(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = onAboutClick
                     ) {
                         Column(
                             modifier = Modifier
@@ -301,7 +319,8 @@ fun DashboardScreen(
 
                     // Settings card
                     DashboardCard(
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = onSettingsClick
                     ) {
                         Row(
                             modifier = Modifier
@@ -323,6 +342,70 @@ fun DashboardScreen(
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
+
+    // Diálogo de selección de launcher
+    if (showLauncherDialog) {
+        LauncherSelectionDialog(
+            launchers = compatibleLaunchers,
+            onLauncherSelected = { launcher ->
+                IconPackManager.applyIconPack(context, launcher)
+                showLauncherDialog = false
+            },
+            onDismiss = { showLauncherDialog = false }
+        )
+    }
+}
+
+@Composable
+private fun LauncherSelectionDialog(
+    launchers: List<LauncherInfo>,
+    onLauncherSelected: (LauncherInfo) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = MaterialTheme.colorScheme.surface,
+        title = {
+            Text(
+                stringResource(R.string.launcher_selection_title),
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                launchers.forEach { launcher ->
+                    Button(
+                        onClick = { onLauncherSelected(launcher) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                    ) {
+                        Text(
+                            text = launcher.name,
+                            modifier = Modifier.padding(8.dp)
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {},
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(
+                    stringResource(R.string.cancel),
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+        }
+    )
 }
 
 @Composable
