@@ -182,6 +182,14 @@
     <string name="notification_channel_name">Updates</string>
     <string name="notification_channel_desc">Notifications for new versions and content</string>
 
+    <!-- Icon Detail Dialog -->
+    <string name="icon_detail_title">Icon Detail</string>
+    <string name="icon_detail_favorite">Favorite</string>
+    <string name="icon_detail_unfavorite">Unfavorite</string>
+    <string name="icon_detail_apply">Apply</string>
+    <string name="icon_detail_category">Category: %s</string>
+    <string name="icons_favorites">Favorites</string>
+
     <!-- Errores -->
     <string name="error_starting_app">Error starting the application</string>
     <string name="security_error">Security error</string>

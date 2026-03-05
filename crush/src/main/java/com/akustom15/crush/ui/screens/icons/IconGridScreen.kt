@@ -1,19 +1,21 @@
 package com.akustom15.crush.ui.screens.icons
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -27,12 +29,14 @@ import androidx.core.graphics.drawable.toBitmap
 import com.akustom15.crush.R
 import com.akustom15.crush.config.CrushConfig
 import com.akustom15.crush.iconpack.AppFilterParser
+import com.akustom15.crush.iconpack.FavoriteIconsManager
+import com.akustom15.crush.iconpack.IconPackManager
+import com.akustom15.crush.iconpack.LauncherInfo
 import com.akustom15.crush.model.IconItem
-import com.akustom15.crush.ui.components.AppHeader
 
 /**
- * Pantalla de cuadrícula de iconos que muestra todos los iconos del pack.
- * Soporta búsqueda, categorías y selección de iconos.
+ * Icon grid screen with tab-based categories, favorites, search, and icon detail dialog.
+ * Design matches Zyra/Glasswave icon preview style.
  */
 @Composable
 fun IconGridScreen(
@@ -44,7 +48,7 @@ fun IconGridScreen(
 ) {
     val context = LocalContext.current
 
-    // Cargar iconos del pack desde assets
+    // Load icons from assets
     val allIcons = remember(config.packageName) {
         try {
             AppFilterParser.parseDrawableXml(context)
@@ -53,188 +57,315 @@ fun IconGridScreen(
         }
     }
 
-    // Obtener categorías únicas
+    // Get unique categories
     val categories = remember(allIcons) {
-        listOf("All") + allIcons.map { it.category }.filter { it.isNotEmpty() }.distinct()
+        allIcons.map { it.category }.filter { it.isNotEmpty() }.distinct()
     }
 
-    var selectedCategory by remember { mutableStateOf("All") }
+    // Tab state: 0=All, 1=Favorites, 2+=categories
+    var selectedTabIndex by remember { mutableStateOf(0) }
 
-    // Filtrar iconos por búsqueda y categoría
-    val filteredIcons = remember(allIcons, searchQuery, selectedCategory) {
-        allIcons.filter { icon ->
-            val matchesSearch = searchQuery.isEmpty() ||
-                icon.formattedName.contains(searchQuery, ignoreCase = true) ||
-                icon.drawableName.contains(searchQuery, ignoreCase = true)
-            val matchesCategory = selectedCategory == "All" ||
-                icon.category == selectedCategory
-            matchesSearch && matchesCategory
-        }
+    // Favorites state
+    var favoriteIcons by remember { mutableStateOf(FavoriteIconsManager.loadFavoriteIcons(context)) }
+    val favoriteIconItems = remember(allIcons, favoriteIcons) {
+        allIcons.filter { favoriteIcons.contains(it.drawableName) }
     }
 
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(4),
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(
-            start = 12.dp, end = 12.dp,
-            top = 0.dp, bottom = bottomContentPadding + 16.dp
-        ),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        // Header con icono de la app (ocupa todo el ancho)
-        if (showHeader) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                AppHeader(
-                    appIcon = config.appIcon,
-                    appName = config.appName,
-                    appSubtitle = config.appSubtitle
-                )
+    // Icon detail dialog state
+    var showIconDetail by remember { mutableStateOf(false) }
+    var selectedIcon by remember { mutableStateOf<IconItem?>(null) }
+
+    // Launcher dialog state
+    var showLauncherDialog by remember { mutableStateOf(false) }
+    val compatibleLaunchers = remember(context) { IconPackManager.getCompatibleLaunchers(context) }
+
+    // Filter icons based on tab and search
+    val filteredIcons = remember(allIcons, searchQuery, selectedTabIndex, categories, favoriteIconItems) {
+        when {
+            selectedTabIndex == 0 && searchQuery.isBlank() -> allIcons
+            selectedTabIndex == 0 -> allIcons.filter {
+                it.formattedName.contains(searchQuery, ignoreCase = true) ||
+                    it.drawableName.contains(searchQuery, ignoreCase = true)
             }
-        }
-
-        // Contador de iconos
-        item(span = { GridItemSpan(maxLineSpan) }) {
-            Text(
-                text = stringResource(R.string.icons_total, filteredIcons.size),
-                fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(vertical = 4.dp, horizontal = 4.dp)
-            )
-        }
-
-        // Filtro de categorías (si hay más de una)
-        if (categories.size > 2) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                CategoryFilterRow(
-                    categories = categories,
-                    selectedCategory = selectedCategory,
-                    onCategorySelected = { selectedCategory = it }
-                )
-            }
-        }
-
-        // Cuadrícula de iconos
-        if (filteredIcons.isEmpty()) {
-            item(span = { GridItemSpan(maxLineSpan) }) {
-                Box(
-                    modifier = Modifier.fillMaxWidth().padding(32.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(R.string.icons_no_results),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 16.sp
-                    )
+            selectedTabIndex == 1 -> {
+                if (searchQuery.isBlank()) favoriteIconItems
+                else favoriteIconItems.filter {
+                    it.formattedName.contains(searchQuery, ignoreCase = true) ||
+                        it.drawableName.contains(searchQuery, ignoreCase = true)
                 }
             }
-        } else {
-            items(filteredIcons, key = { it.drawableName }) { icon ->
-                IconGridItem(
-                    icon = icon,
-                    onClick = { onIconSelected?.invoke(icon) }
-                )
+            else -> {
+                val catIndex = selectedTabIndex - 2
+                if (catIndex < categories.size) {
+                    val selectedCategory = categories[catIndex]
+                    allIcons.filter { icon ->
+                        icon.category == selectedCategory && (searchQuery.isBlank() ||
+                            icon.formattedName.contains(searchQuery, ignoreCase = true) ||
+                            icon.drawableName.contains(searchQuery, ignoreCase = true))
+                    }
+                } else allIcons
             }
         }
     }
-}
-
-/** Fila de filtro de categorías con chips horizontales */
-@Composable
-private fun CategoryFilterRow(
-    categories: List<String>,
-    selectedCategory: String,
-    onCategorySelected: (String) -> Unit
-) {
-    androidx.compose.foundation.lazy.LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 4.dp),
-        modifier = Modifier.padding(vertical = 4.dp)
-    ) {
-        items(categories.size) { index ->
-            val category = categories[index]
-            val isSelected = category == selectedCategory
-            FilterChip(
-                selected = isSelected,
-                onClick = { onCategorySelected(category) },
-                label = {
-                    Text(
-                        text = if (category == "All") stringResource(R.string.icons_all) else category,
-                        fontSize = 13.sp
-                    )
-                },
-                colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = MaterialTheme.colorScheme.primary,
-                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    }
-}
-
-/** Item individual de la cuadrícula de iconos */
-@Composable
-private fun IconGridItem(icon: IconItem, onClick: () -> Unit) {
-    val context = LocalContext.current
 
     Column(
         modifier = Modifier
-            .clip(RoundedCornerShape(12.dp))
-            .clickable(onClick = onClick)
-            .padding(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
     ) {
-        // Renderizar el icono desde el resource ID
-        val drawable = remember(icon.resourceId) {
-            try {
-                context.getDrawable(icon.resourceId)
-            } catch (e: Exception) {
-                null
+        // Scrollable tab row (All, Favorites, categories...)
+        ScrollableTabRow(
+            selectedTabIndex = selectedTabIndex,
+            modifier = Modifier.fillMaxWidth(),
+            containerColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground,
+            divider = {},
+            indicator = {},
+            edgePadding = 0.dp
+        ) {
+            // Tab All
+            Tab(
+                selected = selectedTabIndex == 0,
+                onClick = { selectedTabIndex = 0 },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(
+                        if (selectedTabIndex == 0) MaterialTheme.colorScheme.primary
+                        else Color.Transparent
+                    ),
+                text = {
+                    Text(
+                        text = stringResource(R.string.icons_all),
+                        fontWeight = if (selectedTabIndex == 0) FontWeight.Bold else FontWeight.Normal,
+                        color = if (selectedTabIndex == 0)
+                            MaterialTheme.colorScheme.onPrimary
+                        else MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            )
+
+            // Tab Favorites
+            Tab(
+                selected = selectedTabIndex == 1,
+                onClick = { selectedTabIndex = 1 },
+                modifier = Modifier
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(
+                        if (selectedTabIndex == 1) MaterialTheme.colorScheme.primary
+                        else Color.Transparent
+                    ),
+                text = {
+                    Text(
+                        text = stringResource(R.string.icons_favorites),
+                        fontWeight = if (selectedTabIndex == 1) FontWeight.Bold else FontWeight.Normal,
+                        color = if (selectedTabIndex == 1)
+                            MaterialTheme.colorScheme.onPrimary
+                        else MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            )
+
+            // Category tabs
+            categories.forEachIndexed { index, category ->
+                Tab(
+                    selected = selectedTabIndex == index + 2,
+                    onClick = { selectedTabIndex = index + 2 },
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .clip(RoundedCornerShape(50))
+                        .background(
+                            if (selectedTabIndex == index + 2) MaterialTheme.colorScheme.primary
+                            else Color.Transparent
+                        ),
+                    text = {
+                        Text(
+                            text = category,
+                            fontWeight = if (selectedTabIndex == index + 2) FontWeight.Bold else FontWeight.Normal,
+                            color = if (selectedTabIndex == index + 2)
+                                MaterialTheme.colorScheme.onPrimary
+                            else MaterialTheme.colorScheme.onBackground
+                        )
+                    }
+                )
             }
         }
 
-        if (drawable != null) {
-            val bitmap = remember(drawable) {
-                drawable.toBitmap(width = 128, height = 128)
-            }
-            Image(
-                bitmap = bitmap.asImageBitmap(),
-                contentDescription = icon.formattedName,
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8.dp)),
-                contentScale = ContentScale.Fit
-            )
-        } else {
-            // Placeholder si no se puede cargar
+        // Icon count
+        Text(
+            text = stringResource(R.string.icons_total, filteredIcons.size),
+            fontSize = 13.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+        )
+
+        // Icon grid
+        if (filteredIcons.isEmpty()) {
             Box(
                 modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                    .fillMaxSize()
+                    .padding(bottom = bottomContentPadding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("?", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    text = stringResource(R.string.icons_no_results),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 16.sp
+                )
+            }
+        } else {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(4),
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(
+                    start = 8.dp, end = 8.dp,
+                    top = 4.dp, bottom = bottomContentPadding + 16.dp
+                ),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(filteredIcons, key = { it.drawableName }) { icon ->
+                    IconGridItem(
+                        icon = icon,
+                        onClick = {
+                            selectedIcon = icon
+                            showIconDetail = true
+                        }
+                    )
+                }
             }
         }
+    }
 
-        Spacer(modifier = Modifier.height(4.dp))
+    // Icon detail dialog
+    if (showIconDetail && selectedIcon != null) {
+        IconDetailDialog(
+            iconItem = selectedIcon!!,
+            isFavorite = favoriteIcons.contains(selectedIcon!!.drawableName),
+            onDismiss = { showIconDetail = false },
+            onToggleFavorite = {
+                favoriteIcons = FavoriteIconsManager.toggleFavoriteIcon(context, selectedIcon!!.drawableName)
+            },
+            onApplyClick = {
+                showIconDetail = false
+                val launchers = compatibleLaunchers
+                when {
+                    launchers.size == 1 -> IconPackManager.applyIconPack(context, launchers.first())
+                    launchers.size > 1 -> showLauncherDialog = true
+                    else -> Toast.makeText(context, context.getString(R.string.launcher_not_found), Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
 
-        Text(
-            text = icon.formattedName,
-            fontSize = 10.sp,
-            color = MaterialTheme.colorScheme.onSurface,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+    // Launcher selection dialog
+    if (showLauncherDialog) {
+        AlertDialog(
+            onDismissRequest = { showLauncherDialog = false },
+            containerColor = MaterialTheme.colorScheme.surface,
+            title = {
+                Text(
+                    stringResource(R.string.launcher_selection_title),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            },
+            text = {
+                Column(
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+                ) {
+                    compatibleLaunchers.forEach { launcher ->
+                        Button(
+                            onClick = {
+                                IconPackManager.applyIconPack(context, launcher)
+                                showLauncherDialog = false
+                            },
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                        ) {
+                            Text(text = launcher.name, modifier = Modifier.padding(8.dp))
+                        }
+                    }
+                }
+            },
+            confirmButton = {},
+            dismissButton = {
+                TextButton(onClick = { showLauncherDialog = false }) {
+                    Text(stringResource(R.string.cancel), color = MaterialTheme.colorScheme.primary)
+                }
+            }
         )
     }
 }
 
+/** Icon grid item with circular background like Zyra/Glasswave */
+@Composable
+fun IconGridItem(icon: IconItem, onClick: () -> Unit) {
+    val context = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .padding(4.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .clickable(onClick = onClick)
+            .size(100.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(4.dp)
+        ) {
+            // Icon with circular background
+            Box(
+                modifier = Modifier
+                    .size(60.dp)
+                    .background(MaterialTheme.colorScheme.surface, CircleShape)
+                    .padding(4.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                val drawable = remember(icon.resourceId) {
+                    try {
+                        context.getDrawable(icon.resourceId)
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+
+                if (drawable != null) {
+                    val bitmap = remember(drawable) {
+                        drawable.toBitmap(width = 128, height = 128)
+                    }
+                    Image(
+                        bitmap = bitmap.asImageBitmap(),
+                        contentDescription = icon.formattedName,
+                        modifier = Modifier.size(52.dp),
+                        contentScale = ContentScale.Fit
+                    )
+                }
+            }
+
+            // Icon name
+            Text(
+                text = icon.formattedName,
+                fontSize = 10.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+        }
+    }
+}
+
 /**
- * Pantalla de iconos standalone para usar desde IconPickerActivity.
- * Incluye su propia barra de búsqueda.
+ * Standalone icons screen for use from IconPickerActivity.
+ * Includes its own search bar.
  */
 @Composable
 fun StandaloneIconsScreen(
@@ -245,7 +376,6 @@ fun StandaloneIconsScreen(
     val context = LocalContext.current
     var searchQuery by remember { mutableStateOf("") }
 
-    // Cargar todos los iconos
     val allIcons = remember {
         try {
             AppFilterParser.parseDrawableXml(context)
@@ -254,7 +384,6 @@ fun StandaloneIconsScreen(
         }
     }
 
-    // Filtrar por búsqueda
     val filteredIcons = remember(allIcons, searchQuery) {
         if (searchQuery.isEmpty()) allIcons
         else allIcons.filter {
@@ -268,7 +397,6 @@ fun StandaloneIconsScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        // Barra de búsqueda simple
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
@@ -280,7 +408,6 @@ fun StandaloneIconsScreen(
             shape = RoundedCornerShape(50)
         )
 
-        // Cuadrícula de iconos
         LazyVerticalGrid(
             columns = GridCells.Fixed(4),
             modifier = Modifier.fillMaxSize(),
